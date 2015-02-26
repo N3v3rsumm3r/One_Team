@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @current_skill.user_id %>
+</p>
+
+<p>
+  <strong>Skill:</strong>
+  <%= @current_skill.skill_id %>
+</p>
+
+<%= link_to 'Edit', edit_current_skill_path(@current_skill) %> |
+<%= link_to 'Back', current_skills_path %>

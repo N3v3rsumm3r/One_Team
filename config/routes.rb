@@ -1,4 +1,26 @@
 Rails.application.routes.draw do
+  resources :projects
+
+  resources :needed_skills
+
+  resources :requests
+
+  resources :desired_skills
+
+  resources :current_skills
+
+  resources :users
+
+  resources :skills
+
+  resources :groups
+
+  resources :positions
+
+  resources :locations
+
+  resources :departments
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
