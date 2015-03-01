@@ -10,11 +10,16 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.find(params[:id])
   end
 
   # GET /users/new
   def new
     @user = User.new
+    @location = Location.all
+    @position = Position.all
+    @group = Group.all
+    @department = Department.all
   end
 
   # GET /users/1/edit
@@ -25,9 +30,14 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @location = Location.all
+    @position = Position.all
+    @group = Group.all
+    @department = Department.all
 
     respond_to do |format|
       if @user.save
+        flash[:success] = "Welcome to the Sample App!"
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -42,6 +52,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
+        flash[:success] = "Welcome to OneTeam!"
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -69,6 +80,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :department_id, :location_id, :position_id, :group_id, :manager, :years_with_company, :password_digest)
+      params.require(:user).permit(:first_name, :last_name, :email, :manager, :years_with_company, :position_id, :department_id, :group_id, :location_id, :password, :password_confirmation)
     end
 end

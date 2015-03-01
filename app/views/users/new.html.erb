@@ -1,5 +1,49 @@
-<h1>New User</h1>
+<% provide(:title, 'Sign up') %>
+<h1>Sign up</h1>
 
-<%= render 'form' %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user) do |f| %>
+    <%= render 'shared/error_messages' %>
+    
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, class: 'form-control' %>
+    
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, class: 'form-control' %>
+      
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control' %>
+    
+      <%= f.label :manager %><br>
+      <%= f.text_field :manager, class: 'form-control' %>
 
-<%= link_to 'Back', users_path %>
+      <%= f.label :years_with_company %><br>
+      <%= f.number_field :years_with_company, class: 'form-control' %>
+  
+      <%= f.label :position_id %><br>
+      <%= f.collection_select :position_id, @position, :id, :name,
+                              :prompt => "Your Position", class: 'form-control' %>
+
+      <%= f.label :department_id %><br>
+      <%= f.collection_select :department_id, @department, :id, :name,
+                              :prompt => "Your Department", class: 'form-control' %>
+
+      <%= f.label :group_id %><br>
+      <%= f.collection_select :group_id, @group, :id, :name,
+                              :prompt => "Your Group", class: 'form-control' %>
+
+      <%= f.label :location_id %><br>
+      <%= f.collection_select :location_id, @location, :id, :name,
+                              :prompt => "Your Location", class: 'form-control' %>
+  
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+      <%= f.submit "Create my account", class: "btn btn-primary" %>
+      <% end %>
+  </div>
+</div>
