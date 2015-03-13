@@ -14,7 +14,6 @@
       <th>Group</th>
       <th>Manager</th>
       <th>Years with company</th>
-      <th>Password digest</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -25,16 +24,15 @@
         <td><%= user.first_name %></td>
         <td><%= user.last_name %></td>
         <td><%= user.email %></td>
-        <td><%= user.department_id %></td>
-        <td><%= user.location_id %></td>
-        <td><%= user.position_id %></td>
-        <td><%= user.group_id %></td>
+        <td><%= user.department.name %></td>
+        <td><%= user.location.name %></td>
+        <td><%= user.position.name %></td>
+        <td><%= user.group.name %></td>
         <td><%= user.manager %></td>
         <td><%= user.years_with_company %></td>
-        <td><%= user.password_digest %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!--<td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
       </tr>
     <% end %>
   </tbody>

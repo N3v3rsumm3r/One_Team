@@ -17,22 +17,22 @@
 
 <p>
   <strong>Department:</strong>
-  <%= @user.department_id %>
+  <%= @user.department.name %>
 </p>
 
 <p>
   <strong>Location:</strong>
-  <%= @user.location_id %>
+  <%= @user.location.name %>
 </p>
 
 <p>
   <strong>Position:</strong>
-  <%= @user.position_id %>
+  <%= @user.position.name %>
 </p>
 
 <p>
   <strong>Group:</strong>
-  <%= @user.group_id %>
+  <%= @user.group.name %>
 </p>
 
 <p>
@@ -43,11 +43,6 @@
 <p>
   <strong>Years with company:</strong>
   <%= @user.years_with_company %>
-</p>
-
-<p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
