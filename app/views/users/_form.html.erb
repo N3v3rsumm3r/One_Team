@@ -25,19 +25,23 @@
   </div>
   <div class="field">
     <%= f.label :department_id %><br>
-    <%= f.number_field :department_id %>
+    <%= f.collection_select :department_id, @department, :id, :name,
+                            :prompt => "Your Department", class: 'form-control' %>
   </div>
   <div class="field">
     <%= f.label :location_id %><br>
-    <%= f.number_field :location_id %>
+    <%= f.collection_select :location_id, @location, :id, :name,
+                            :prompt => "Your Location", class: 'form-control' %>
   </div>
   <div class="field">
     <%= f.label :position_id %><br>
-    <%= f.number_field :position_id %>
+    <%= f.collection_select :position_id, @position, :id, :name,
+                            :prompt => "Your Position", class: 'form-control' %>
   </div>
   <div class="field">
     <%= f.label :group_id %><br>
-    <%= f.number_field :group_id %>
+    <%= f.collection_select :group_id, @group, :id, :name,
+                            :prompt => "Your Group", class: 'form-control' %>
   </div>
   <div class="field">
     <%= f.label :manager %><br>
@@ -46,10 +50,6 @@
   <div class="field">
     <%= f.label :years_with_company %><br>
     <%= f.number_field :years_with_company %>
-  </div>
-  <div class="field">
-    <%= f.label :password_digest %><br>
-    <%= f.text_field :password_digest %>
   </div>
   <div class="actions">
     <%= f.submit %>
