@@ -1,4 +1,4 @@
 class CurrentSkill < ActiveRecord::Base
-  belongs_to: :users
-  belongs_to: :skills
+  belongs_to :users
+  belongs_to :skills
 end
