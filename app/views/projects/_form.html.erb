@@ -29,7 +29,7 @@
   </div>
   <div class="field">
     <%= f.label :user_id %><br>
-    <%= f.collection_select :user_id, @user, :id, :first_name,
+    <%= f.collection_select :user_id, @user, :id, :full_name,
                             :prompt => "Project Lead", class: 'form-control' %>
   </div>
   <div class="actions">
