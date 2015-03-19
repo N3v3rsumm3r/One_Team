@@ -16,6 +16,9 @@ class RequestsController < ApplicationController
   def new
     @request = Request.new
     @project = Project.all
+    @location = Location.all
+    @department = Department.all
+    @group = Group.all
   end
 
   # GET /requests/1/edit
@@ -27,6 +30,9 @@ class RequestsController < ApplicationController
   def create
     @request = Request.new(request_params)
     @project = Project.all
+    @location = Location.all
+    @department = Department.all
+    @group = Group.all
 
     respond_to do |format|
       if @request.save

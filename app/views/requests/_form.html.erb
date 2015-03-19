@@ -35,6 +35,18 @@
     <%=f.label :project_id , "Associated Project" %>
     <%= f.collection_select :project_id, @project, :id, :name,
                             :prompt => "Associated Project", class: 'form-control' %>
+  <div class="field">
+    <%=f.label :location_id , "Location" %>
+    <%= f.collection_select :location_id, @location, :id, :name,
+                            :prompt => "Location", class: 'form-control' %>
+  <div class="field">
+      <%=f.label :department_id , "Department" %>
+      <%= f.collection_select :department_id, @department, :id, :name,
+                              :prompt => "Department", class: 'form-control' %>
+  <div class="field">
+    <%=f.label :group_id , "Associated Project" %>
+    <%= f.collection_select :group_id, @group, :id, :name,
+                            :prompt => "Group", class: 'form-control' %>
   <div class="actions">
     <%= f.submit %>
   </div>
