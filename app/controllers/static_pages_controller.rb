@@ -1,4 +1,4 @@
 class StaticPagesController < ApplicationController
-  def dispatch
+  def home
   end
 end

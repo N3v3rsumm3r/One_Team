@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  root               'static_pages#dispatch'
+  root               'static_pages#home'
   get 'request'  =>  'requests#index'
   get 'project'  =>  'projects#index'
   get 'user'     =>  'users#index'
