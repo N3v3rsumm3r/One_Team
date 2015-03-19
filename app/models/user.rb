@@ -8,4 +8,8 @@ class User < ActiveRecord::Base
   has_many :skills, through: :desired_skills
   has_many :projects
   has_many :requests, through: :projects
+  
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

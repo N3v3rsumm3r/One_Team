@@ -44,9 +44,13 @@
       <%= f.collection_select :department_id, @department, :id, :name,
                               :prompt => "Department", class: 'form-control' %>
   <div class="field">
-    <%=f.label :group_id , "Associated Project" %>
+    <%=f.label :group_id , "Group" %>
     <%= f.collection_select :group_id, @group, :id, :name,
                             :prompt => "Group", class: 'form-control' %>
+  <div class="field">
+    <%=f.label :user_id , "User Making Request" %>
+    <%= f.collection_select :user_id, @user, :id, :full_name,
+                            :prompt => "User", class: 'form-control' %>
   <div class="actions">
     <%= f.submit %>
   </div>

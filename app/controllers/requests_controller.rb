@@ -19,6 +19,7 @@ class RequestsController < ApplicationController
     @location = Location.all
     @department = Department.all
     @group = Group.all
+    @user = User.all
   end
 
   # GET /requests/1/edit
@@ -33,6 +34,7 @@ class RequestsController < ApplicationController
     @location = Location.all
     @department = Department.all
     @group = Group.all
+    @user = User.all
 
     respond_to do |format|
       if @request.save
