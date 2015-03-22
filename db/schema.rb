@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150319031425) do
+ActiveRecord::Schema.define(version: 20150322221935) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer  "request_id"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20150319031425) do
   end
 
   create_table "requests", force: :cascade do |t|
-    t.string   "title"
+    t.string   "name"
     t.text     "description"
     t.date     "start_date"
     t.date     "end_date"
