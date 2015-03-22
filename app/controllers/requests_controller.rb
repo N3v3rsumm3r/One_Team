@@ -5,6 +5,11 @@ class RequestsController < ApplicationController
   # GET /requests.json
   def index
     @requests = Request.all
+    @project = Project.all
+    @location = Location.all
+    @department = Department.all
+    @group = Group.all
+    @user = User.all
   end
 
   # GET /requests/1
@@ -79,6 +84,6 @@ class RequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
-      params.require(:request).permit(:title, :description, :start_date, :end_date, :open)
+      params.require(:request).permit(:title, :description, :start_date, :end_date, :open, :project_id, :location_id, :department_id, :group_id, :user_id)
     end
 end
