@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Title</th>
+      <th>Name</th>
       <th>Description</th>
       <th>Start date</th>
       <th>End date</th>
@@ -22,14 +22,14 @@
   <tbody>
     <% @requests.each do |request| %>
       <tr>
-        <td><%= request.title %></td>
+        <td><%= request.name %></td>
         <td><%= request.description %></td>
         <td><%= request.start_date %></td>
         <td><%= request.end_date %></td>
-        <td><%= request.project_id %></td>
-        <td><%= request.location_id %></td>
-        <td><%= request.department_id %></td>
-        <td><%= request.group_id %></td>
+        <td><%= request.project.name %></td>
+        <td><%= request.location.name%></td>
+        <td><%= request.department.name %></td>
+        <td><%= request.group.name %></td>
         <td><%= request.open %></td>
         <td><%= request.user.full_name %></td>
         <td><%= link_to 'Show', request %></td>
