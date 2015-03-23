@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20150323012459) do
     t.integer  "skill_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "request_id"
   end
 
   create_table "positions", force: :cascade do |t|
