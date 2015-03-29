@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   
-  root               'requests#index'
-  get 'request'  =>  'requests#index'
-  get 'project'  =>  'projects#index'
-  get 'user'     =>  'users#index'
+  root                'requests#index'
+  get 'requests'  =>  'requests#index'
+  get 'projects'  =>  'projects#index'
+  get 'users'     =>  'users#index'
 
   resources :responses
   resources :projects
