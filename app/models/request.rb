@@ -12,5 +12,8 @@ class Request < ActiveRecord::Base
   validates :start_date, presence: true
   validates :end_date, presence: true
   validates :project, presence: true
+  validates :department_id, presence: true
+  validates :group_id, presence: true
+  validates :location_id, presence: true
   validates :user_id, presence: true
 end
