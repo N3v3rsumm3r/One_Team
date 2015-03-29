@@ -7,5 +7,10 @@ class Request < ActiveRecord::Base
   has_many :skills, through: :needed_skills
   has_many :responses
   
+  validates :name, presence: true
+  validates :description, presence: true
+  validates :start_date, presence: true
+  validates :end_date, presence: true
   validates :project, presence: true
+  validates :user_id, presence: true
 end
