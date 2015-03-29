@@ -6,4 +6,6 @@ class Request < ActiveRecord::Base
   belongs_to :user
   has_many :skills, through: :needed_skills
   has_many :responses
+  
+  validates :project, presence: true
 end
