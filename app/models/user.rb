@@ -27,5 +27,5 @@ class User < ActiveRecord::Base
   validates :position_id, presence: true
   validates :group_id, presence: true
   validates :manager, presence: true
-  validates :years_with_company: true
+  validates :years_with_company, presence: true
 end
