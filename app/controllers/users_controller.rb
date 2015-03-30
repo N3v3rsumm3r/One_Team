@@ -24,6 +24,10 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @location = Location.all
+    @position = Position.all
+    @group = Group.all
+    @department = Department.all
   end
 
   # POST /users

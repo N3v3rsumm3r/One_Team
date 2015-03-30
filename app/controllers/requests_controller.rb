@@ -24,6 +24,11 @@ class RequestsController < ApplicationController
 
   # GET /requests/1/edit
   def edit
+    @project = Project.all
+    @location = Location.all
+    @department = Department.all
+    @group = Group.all
+    @user = User.all
   end
 
   # POST /requests
