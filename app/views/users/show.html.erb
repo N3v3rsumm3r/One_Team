@@ -1,49 +1,43 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Department:</strong>
-  <%= @user.department.name %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @user.location.name %>
-</p>
-
-<p>
-  <strong>Position:</strong>
-  <%= @user.position.name %>
-</p>
-
-<p>
-  <strong>Group:</strong>
-  <%= @user.group.name %>
-</p>
-
-<p>
-  <strong>Manager:</strong>
-  <%= @user.manager %>
-</p>
-
-<p>
-  <strong>Years with company:</strong>
-  <%= @user.years_with_company %>
-</p>
+<% provide(:title, @user.first_name + " " + @user.last_name) %>
+<div class = "row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.first_name + " " + @user.last_name %>
+        <p>
+            <%= @user.email %>
+        </p>
+      </h1>
+    </section>
+  </aside>
+  <div class="col-md-8">
+    <div class="col-md-4">
+      <strong>Manager:</strong>
+      <%= @user.manager %>
+    </div>
+    <div class="col-md-4">
+      <strong>Years with company:</strong>
+      <%= @user.years_with_company %>
+    </div>
+    <div class="col-md-4">
+      <strong>Department:</strong>
+      <%= @user.department.name %>
+    </div>
+    <div class="col-md-4">
+      <strong>Location:</strong>
+      <%= @user.location.name %>
+    </div>
+    <div class="col-md-4">
+      <strong>Position:</strong>
+      <%= @user.position.name %> 
+    </div>
+    <div class="col-md-4">
+      <strong>Group:</strong>
+      <%= @user.group.name %>
+    </div>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
