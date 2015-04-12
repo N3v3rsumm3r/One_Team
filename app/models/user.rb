@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   belongs_to :department
   belongs_to :group
   belongs_to :position
+  belongs_to :manager, :class_name => 'User', :foreign_key => 'manager_id'
   has_many :current_skills
   has_many :skills, through: :current_skills
   has_many :desired_skills

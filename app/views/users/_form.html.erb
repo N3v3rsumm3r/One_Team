@@ -28,8 +28,9 @@
         <%= f.text_field :email %>
       </div>
       <div class="field">
-        <%= f.label :manager %><br>
-        <%= f.text_field :manager %>
+        <%= f.label :manager_id %><br>
+        <%= f.collection_select :manager_id, User.all, :id, :full_name, 
+                                :prompt => "Your Manager", class: 'form-control' %>
       </div>
       <div class="field">
         <%= f.label :years_with_company %><br>
