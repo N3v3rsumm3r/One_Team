@@ -14,7 +14,7 @@
   <div class="col-md-8">
     <div class="col-md-4">
       <strong>Manager:</strong>
-      <%= @user.manager %>
+      <%= @user.manager.full_name %>
     </div>
     <div class="col-md-4">
       <strong>Years with company:</strong>
@@ -35,6 +35,12 @@
     <div class="col-md-4">
       <strong>Group:</strong>
       <%= @user.group.name %>
+    </div>
+    <div class="col-md-4">
+      <strong>Current Skills:</strong>
+      <% @user.current_skills.each do |current_skill| %>
+        <%= skill.skill.name %>
+      <% end %>
     </div>
   </div>
 </div>
