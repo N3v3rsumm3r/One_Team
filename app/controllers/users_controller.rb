@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :collection_resources, only: [:edit, :update, :new]
 
   # GET /users
   # GET /users.json
@@ -16,28 +17,16 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
-    @location = Location.all
-    @position = Position.all
-    @group = Group.all
-    @department = Department.all
   end
 
   # GET /users/1/edit
   def edit
-    @location = Location.all
-    @position = Position.all
-    @group = Group.all
-    @department = Department.all
   end
 
   # POST /users
   # POST /users.json
   def create
     @user = User.new(user_params)
-    @location = Location.all
-    @position = Position.all
-    @group = Group.all
-    @department = Department.all
 
     respond_to do |format|
       if @user.save
@@ -79,9 +68,17 @@ class UsersController < ApplicationController
     def set_user
       @user = User.find(params[:id])
     end
+  
+    def collection_resources
+      @location = Location.all
+      @position = Position.all
+      @group = Group.all
+      @department = Department.all
+      @skill = Skill.all
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :department_id, :location_id, :position_id, :group_id, :manager, :years_with_company, :password, :password_confirmation, :password_digest)
+      params.require(:user).permit(:first_name, :last_name, :email, :department_id, :location_id, :position_id, :group_id, :manager_id, :years_with_company, :password, :password_confirmation, :password_digest)
     end
 end
