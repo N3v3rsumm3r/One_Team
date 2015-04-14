@@ -39,9 +39,14 @@
     <div class="col-md-4">
       <strong>Current Skills:</strong>
       <% @user.skills.each do |skills| %>
-      <li><%= skills.name %></li>
+        <li><%= skills.name %></li>
       <% end %>
     </div>
+    <div class="col-md-4">
+      <strong>Desired Skills:</strong>
+      <% @user.goals.each do |goals| %>
+        <li><%= goals.name %></li>
+      <% end %>
   </div>
 </div>
 

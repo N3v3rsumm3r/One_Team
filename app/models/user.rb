@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :current_skills
   has_many :skills, through: :current_skills
   has_many :desired_skills
+  has_many :goals, through: :desired_skills, source: :skill
   has_many :projects
   has_many :requests
   has_many :responses

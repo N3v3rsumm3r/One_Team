@@ -68,9 +68,15 @@
       <div class="checkbox_field">
         <% @skill.all.each do |skill| %>
           <%= check_box_tag  "user[skill_ids][]", skill.id %>
-          <%= skill.name %>
+          <%= skill.name %><br>
         <% end %>
       </div>
+      <label>Desired Skills</label>
+      <div class="checkbox_field">
+        <% @skill.all.each do |skill| %>
+          <%= check_box_tag "user[goal_ids][]", skill.id %>
+          <%= skill.name %><br>
+        <% end %>
     
       <div class="actions">
         <%= f.submit %>
