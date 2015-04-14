@@ -38,8 +38,8 @@
     </div>
     <div class="col-md-4">
       <strong>Current Skills:</strong>
-      <% @user.current_skills.each do |current_skill| %>
-        <%= skill.skill.name %>
+      <% @user.skills.each do |skills| %>
+      <li><%= skills.name %></li>
       <% end %>
     </div>
   </div>

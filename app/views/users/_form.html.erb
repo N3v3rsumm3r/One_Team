@@ -64,9 +64,10 @@
         <%= f.label :password_confirmation, "Confirmation" %>
         <%= f.password_field :password_confirmation, class: 'form-control' %>
       </div>
+      <label>Current Skills</label>
       <div class="checkbox_field">
         <% @skill.all.each do |skill| %>
-        <%= check_box_tag  "user[skill_ids[]]", skill.id %>
+          <%= check_box_tag  "user[skill_ids][]", skill.id %>
           <%= skill.name %>
         <% end %>
       </div>
