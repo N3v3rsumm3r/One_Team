@@ -31,6 +31,6 @@ class User < ActiveRecord::Base
   validates :location_id, presence: true
   validates :position_id, presence: true
   validates :group_id, presence: true
-  validates :manager, presence: true
+  validates :manager_id, presence: true, on: :update
   validates :years_with_company, presence: true
 end
