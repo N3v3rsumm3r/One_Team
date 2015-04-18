@@ -52,7 +52,7 @@ Skill.create!([
   ])
 
 User.create!([
-  {first_name: "Anne", last_name: "Chen", email: "achen@example.com", department_id: "1", location_id: "1", position_id: "3", group_id: "1", manager_id: "1", years_with_company: "8", password_digest: "$2a$10$1HXVcw71j3WKbkIAGOhBd.rwHBEtiFo2/46aERA0cKU8nd6AZ39Zu"}
+  {first_name: "Anne", last_name: "Chen", email: "achen@example.com", department_id: "1", location_id: "1", position_id: "3", group_id: "1", manager_id: "1", years_with_company: "8", password_digest: "$2a$10$1HXVcw71j3WKbkIAGOhBd.rwHBEtiFo2/46aERA0cKU8nd6AZ39Zu"},
   {first_name: "Spencer", last_name: "Wilow", email: "swilow@example.com", department_id: "1", location_id: "1", position_id: "1", group_id: "1", manager_id: "1", years_with_company: "3", password_digest: "$2a$10$1HXVcw71j3WKbkIAGOhBd.rwHBEtiFo2/46aERA0cKU8nd6AZ39Zu"}
   ])
 
