@@ -26,11 +26,11 @@ class User < ActiveRecord::Base
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password
-  validates :password, length: {minimum: 6}
-  validates :department_id, presence: true
-  validates :location_id, presence: true
-  validates :position_id, presence: true
-  validates :group_id, presence: true
-  validates :manager_id, presence: true, on: :update
-  validates :years_with_company, presence: true
+  validates :password, length: {minimum: 6}, on: :create
+  validates :department_id, presence: true, on: :update
+  validates :location_id, presence: true, on: :update
+  validates :position_id, presence: true, on: :update
+  validates :group_id, presence: true, on: :update
+  validates :manager_id, presence: true, allow_blank: true, on: :update
+  validates :years_with_company, presence: true, on: :update
 end

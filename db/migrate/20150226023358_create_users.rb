@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :location_id
       t.integer :position_id
       t.integer :group_id
-      t.string :manager
+      t.integer :manager_id
       t.integer :years_with_company
       t.string :password_digest
 

@@ -14,7 +14,11 @@
   <div class="col-md-8">
     <div class="col-md-4">
       <strong>Manager:</strong>
-      <%= @user.manager.full_name %>
+      <% if @user.manager.nil? %>
+        No Manager
+      <% else %>
+        <%= @user.manager.full_name %>
+      <% end %>
     </div>
     <div class="col-md-4">
       <strong>Years with company:</strong>
@@ -38,14 +42,14 @@
     </div>
     <div class="col-md-4">
       <strong>Current Skills:</strong>
-      <% @user.skills.each do |skills| %>
-        <li><%= skills.name %></li>
+      <% @user.skills.each do |skill| %>
+        <li><%= skill.name %></li>
       <% end %>
     </div>
     <div class="col-md-4">
       <strong>Desired Skills:</strong>
-      <% @user.goals.each do |goals| %>
-        <li><%= goals.name %></li>
+      <% @user.goals.each do |goal| %>
+        <li><%= goal.name %></li>
       <% end %>
   </div>
 </div>
