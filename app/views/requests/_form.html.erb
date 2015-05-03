@@ -12,45 +12,45 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :name %>*<br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :description %><br>
+    <%= f.label :description %>*<br>
     <%= f.text_area :description %>
   </div>
   <div class="field">
-    <%= f.label :start_date %><br>
+    <%= f.label :start_date %>*<br>
     <%= f.date_select :start_date %>
   </div>
   <div class="field">
-    <%= f.label :end_date %><br>
+    <%= f.label :end_date %>*<br>
     <%= f.date_select :end_date %>
   </div>
   <div class="field">
-    <%= f.label :open %><br>
+    <%= f.label :open %>*<br>
     <%= f.check_box :open %>
   </div>
   <div class="field">
-    <%=f.label :project_id , "Associated Project" %>
+    <%=f.label :project_id , "Associated Project*" %>
     <%= f.collection_select :project_id, @project, :id, :name,
-                            :prompt => "Associated Project", class: 'form-control' %>
+                            include_blank: '', class: 'form-control' %>
   <div class="field">
-    <%=f.label :location_id , "Location" %>
+    <%=f.label :location_id , "Location*" %>
     <%= f.collection_select :location_id, @location, :id, :name,
-                            :prompt => "Location", class: 'form-control' %>
+                            include_blank: '', class: 'form-control' %>
   <div class="field">
-      <%=f.label :department_id , "Department" %>
+      <%=f.label :department_id , "Department*" %>
       <%= f.collection_select :department_id, @department, :id, :name,
-                              :prompt => "Department", class: 'form-control' %>
+                              include_blank: '', class: 'form-control' %>
   <div class="field">
-    <%=f.label :group_id , "Group" %>
+    <%=f.label :group_id , "Group*" %>
     <%= f.collection_select :group_id, @group, :id, :name,
-                            :prompt => "Group", class: 'form-control' %>
+                            include_blank: '', class: 'form-control' %>
   <div class="field">
-    <%=f.label :user_id , "User Making Request" %>
+    <%=f.label :user_id , "User Making Request*" %>
     <%= f.collection_select :user_id, @user, :id, :full_name,
-                            :prompt => "User", class: 'form-control' %>
+                            include_blank: '', class: 'form-control' %>
   <div class="actions">
     <%= f.submit %>
   </div>

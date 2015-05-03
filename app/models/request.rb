@@ -16,11 +16,11 @@ class Request < ActiveRecord::Base
   validates :group_id, presence: true
   validates :location_id, presence: true
   validates :user_id, presence: true
-  validate :start_date_cannot_be_in_past, :end_date_cannot_be_before_start_date
+  validate :end_date_cannot_be_in_past, :end_date_cannot_be_before_start_date
   
-  def start_date_cannot_be_in_past
+  def end_date_cannot_be_in_past
     if start_date.present? && start_date < Date.today
-      errors.add(:start_date, "cannot be in the past.")
+      errors.add(:end_date, "cannot be in the past.")
     end
   end
   

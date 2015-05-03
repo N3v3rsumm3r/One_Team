@@ -15,7 +15,7 @@
     <div class="col-md-4">
       <strong>Manager:</strong>
       <% if @user.manager.nil? %>
-        No Manager
+        No Manager Assigned
       <% else %>
         <%= @user.manager.full_name %>
       <% end %>

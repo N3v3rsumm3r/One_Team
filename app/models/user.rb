@@ -19,6 +19,13 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
   
+  def skill_list
+    @skill.all.each do |skill|
+      skill.name
+      check_box_tag  "user[skill_ids][]", skill.id, @user.skill_ids.include?(skill.id)  
+    end 
+  end
+
   validates :first_name, presence: true, length: { maximum: 50 }
   validates :last_name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
