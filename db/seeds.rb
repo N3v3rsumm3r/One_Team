@@ -56,5 +56,5 @@ User.create!([
   ])
 
 Project.create!([
-  {name: 'Example Project 1', description: 'An example of how a real project may look', start_date: '2015-03-28', end_date: '2015-03-29', user_id: '1'}
+  {name: 'Example Project 1', description: 'An example of how a real project may look', start_date: '2015-03-28', end_date: '2018-03-29', user_id: '1'}
   ])
