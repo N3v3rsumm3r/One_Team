@@ -40,4 +40,6 @@ class User < ActiveRecord::Base
   validates :group_id, presence: true, on: :update
   validates :manager_id, presence: true, allow_blank: true, on: :update
   validates :years_with_company, presence: true, on: :update
+  
+  
 end

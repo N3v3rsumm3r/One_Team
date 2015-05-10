@@ -27,6 +27,7 @@ textarea{
   margin-bottom: 10px;
 }
 
+
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
@@ -161,7 +162,7 @@ aside {
 
 /* forms */
 
-input, button, textarea, select, .uneditable-input {
+input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   margin-bottom: 15px;
@@ -171,21 +172,6 @@ input, button, textarea, select, .uneditable-input {
 input {
   height: auto !important;
 }
-
-.skill_name{
-  display:inline-block;
-  width:50%;
-}
-
-label[for=request_open]{
-  width:50%;
-}
-
-input[type=checkbox]{
-  display:inline-block;
-  width:auto;
-}
-
 #error_explanation {
   color: red;
   ul {

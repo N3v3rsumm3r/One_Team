@@ -57,7 +57,9 @@
       <label>Current Skills</label>
       <div class="checkbox_field">
         <% @skill.all.each do |skill| %>
-          <%= skill.name %> 
+          <div class="skill_name">
+            <%= skill.name %> 
+          </div>
           <%= check_box_tag  "user[skill_ids][]", skill.id, @user.skill_ids.include?(skill.id) %>
           <br>
         <% end %>
@@ -65,8 +67,10 @@
       <label>Desired Skills</label>
       <div class="checkbox_field">
         <% @skill.all.each do |skill| %>
-          <%= skill.name %>  
-          <%= check_box_tag "user[goal_ids][]", skill.id, @user.skill_ids.include?(skill.id) %>
+          <div class="skill_name">
+            <%= skill.name %>  
+          </div>
+          <%= check_box_tag "user[goal_ids][]", skill.id, @user.goal_ids.include?(skill.id) %>
           <br>
         <% end %>
     
