@@ -5,8 +5,11 @@ class User < ActiveRecord::Base
   belongs_to :department
   belongs_to :group
   belongs_to :position
-  has_many :current_skills, through: :skills
-  has_many :desired_skills, through: :skills
+  belongs_to :manager, :class_name => 'User', :foreign_key => 'manager_id'
+  has_many :current_skills
+  has_many :skills, through: :current_skills
+  has_many :desired_skills
+  has_many :goals, through: :desired_skills, source: :skill
   has_many :projects
   has_many :requests
   has_many :responses
@@ -16,16 +19,27 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
   
+  def skill_list
+    @skill.all.each do |skill|
+      skill.name
+      check_box_tag  "user[skill_ids][]", skill.id, @user.skill_ids.include?(skill.id)  
+    end 
+  end
+
   validates :first_name, presence: true, length: { maximum: 50 }
   validates :last_name, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
-  validates :department_id, presence: true
-  validates :location_id, presence: true
-  validates :position_id, presence: true
-  validates :group_id, presence: true
-  validates :manager, presence: true
-  validates :years_with_company, presence: true
+  has_secure_password
+  validates :password, length: {minimum: 6}, on: :create
+  validates :department_id, presence: true, on: :update
+  validates :location_id, presence: true, on: :update
+  validates :position_id, presence: true, on: :update
+  validates :group_id, presence: true, on: :update
+  validates :manager_id, presence: true, allow_blank: true, on: :update
+  validates :years_with_company, presence: true, on: :update
+  
+  
 end

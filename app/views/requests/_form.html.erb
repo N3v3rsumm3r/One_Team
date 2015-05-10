@@ -1,57 +1,61 @@
 <%= form_for(@request) do |f| %>
-  <% if @request.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@request.errors.count, "error") %> prohibited this request from being saved:</h2>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+      <% if @request.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@request.errors.count, "error") %> prohibited this request from being saved:</h2>
 
-      <ul>
-      <% @request.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% @request.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+      <div class="field">
+        <%= f.label :name %>*<br>
+        <%= f.text_field :name %>
+      </div>
+      <div class="field">
+        <%= f.label :description %>*<br>
+        <%= f.text_area :description %>
+      </div>
+      <div class="field">
+        <%= f.label :start_date %>*<br>
+        <%= f.date_select :start_date %>
+      </div>
+      <div class="field">
+        <%= f.label :end_date %>*<br>
+        <%= f.date_select :end_date %>
+      </div>
+      <div class="field">
+        <%= f.label :open, "Open*" %>
+        <%= f.check_box :open %>
+      </div>
+      <div class="field">
+        <%=f.label :project_id , "Associated Project*" %>
+        <%= f.collection_select :project_id, @project, :id, :name,
+                                include_blank: '', class: 'form-control' %>
+      <div class="field">
+        <%=f.label :location_id , "Location*" %>
+        <%= f.collection_select :location_id, @location, :id, :name,
+                                include_blank: '', class: 'form-control' %>
+      <div class="field">
+          <%=f.label :department_id , "Department*" %>
+          <%= f.collection_select :department_id, @department, :id, :name,
+                                  include_blank: '', class: 'form-control' %>
+      <div class="field">
+        <%=f.label :group_id , "Group*" %>
+        <%= f.collection_select :group_id, @group, :id, :name,
+                                include_blank: '', class: 'form-control' %>
+      <div class="field">
+        <%=f.label :user_id , "User Making Request*" %>
+        <%= f.collection_select :user_id, @user, :id, :full_name,
+                                include_blank: '', class: 'form-control' %>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
   </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :start_date %><br>
-    <%= f.date_select :start_date %>
-  </div>
-  <div class="field">
-    <%= f.label :end_date %><br>
-    <%= f.date_select :end_date %>
-  </div>
-  <div class="field">
-    <%= f.label :open %><br>
-    <%= f.check_box :open %>
-  </div>
-  <div class="field">
-    <%=f.label :project_id , "Associated Project" %>
-    <%= f.collection_select :project_id, @project, :id, :name,
-                            :prompt => "Associated Project", class: 'form-control' %>
-  <div class="field">
-    <%=f.label :location_id , "Location" %>
-    <%= f.collection_select :location_id, @location, :id, :name,
-                            :prompt => "Location", class: 'form-control' %>
-  <div class="field">
-      <%=f.label :department_id , "Department" %>
-      <%= f.collection_select :department_id, @department, :id, :name,
-                              :prompt => "Department", class: 'form-control' %>
-  <div class="field">
-    <%=f.label :group_id , "Group" %>
-    <%= f.collection_select :group_id, @group, :id, :name,
-                            :prompt => "Group", class: 'form-control' %>
-  <div class="field">
-    <%=f.label :user_id , "User Making Request" %>
-    <%= f.collection_select :user_id, @user, :id, :full_name,
-                            :prompt => "User", class: 'form-control' %>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+</div>
 <% end %>

@@ -1,57 +1,82 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+<% provide(:title, 'Edit User') %>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user) do |f| %>
+      <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
+      <div class="field">
+        <%= f.label :first_name %>*<br>
+        <%= f.text_field :first_name %>
+      </div>
+      <div class="field">
+        <%= f.label :last_name %>*<br>
+        <%= f.text_field :last_name %>
+      </div>
+      <div class="field">
+        <%= f.label :email %>*<br>
+        <%= f.text_field :email %>
+      </div>
+      <div class="field">
+        <%= f.label :manager_id %><br>
+        <%= f.collection_select :manager_id, User.all, :id, :full_name, include_blank: '', class: 'form-control' %>
+      </div>
+      <div class="field">
+        <%= f.label :years_with_company %><br>
+        <%= f.number_field :years_with_company %>
+      </div>
+      <div class="field">
+        <%= f.label :department_id %>*<br>
+        <%= f.collection_select :department_id, @department, :id, :name, include_blank: '', 
+                                 class: 'form-control' %>
+      </div>
+      <div class="field">
+        <%= f.label :location_id %>*<br>
+        <%= f.collection_select :location_id, @location, :id, :name,
+                                include_blank: '', class: 'form-control' %>
+      </div>
+      <div class="field">
+        <%= f.label :position_id %>*<br>
+        <%= f.collection_select :position_id, @position, :id, :name,
+                                include_blank: '', class: 'form-control' %>
+      </div>
+      <div class="field">
+        <%= f.label :group_id %>*<br>
+        <%= f.collection_select :group_id, @group, :id, :name,
+                                include_blank: '', class: 'form-control' %>
+      </div>
+      <label>Current Skills</label>
+      <div class="checkbox_field">
+        <% @skill.all.each do |skill| %>
+          <div class="skill_name">
+            <%= skill.name %> 
+          </div>
+          <%= check_box_tag  "user[skill_ids][]", skill.id, @user.skill_ids.include?(skill.id) %>
+          <br>
+        <% end %>
+      </div><br>
+      <label>Desired Skills</label>
+      <div class="checkbox_field">
+        <% @skill.all.each do |skill| %>
+          <div class="skill_name">
+            <%= skill.name %>  
+          </div>
+          <%= check_box_tag "user[goal_ids][]", skill.id, @user.goal_ids.include?(skill.id) %>
+          <br>
+        <% end %>
+    
+      <div class="actions">
+        <%= f.submit %>
+      </div>
   </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :department_id %><br>
-    <%= f.collection_select :department_id, @department, :id, :name,
-                            :prompt => "Your Department", class: 'form-control' %>
-  </div>
-  <div class="field">
-    <%= f.label :location_id %><br>
-    <%= f.collection_select :location_id, @location, :id, :name,
-                            :prompt => "Your Location", class: 'form-control' %>
-  </div>
-  <div class="field">
-    <%= f.label :position_id %><br>
-    <%= f.collection_select :position_id, @position, :id, :name,
-                            :prompt => "Your Position", class: 'form-control' %>
-  </div>
-  <div class="field">
-    <%= f.label :group_id %><br>
-    <%= f.collection_select :group_id, @group, :id, :name,
-                            :prompt => "Your Group", class: 'form-control' %>
-  </div>
-  <div class="field">
-    <%= f.label :manager %><br>
-    <%= f.text_field :manager %>
-  </div>
-  <div class="field">
-    <%= f.label :years_with_company %><br>
-    <%= f.number_field :years_with_company %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+</div>
 <% end %>
