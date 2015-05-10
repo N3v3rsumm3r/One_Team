@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
   
-  root                'requests#index'
-  get 'requests'  =>  'requests#index'
-  get 'projects'  =>  'projects#index'
-  get 'users'     =>  'users#index'
+  get 'sessions/new'
+
+  root                   'requests#index'
+  get    'requests'  =>  'requests#index'
+  get    'projects'  =>  'projects#index'
+  get    'users'     =>  'users#index'
+  get    'login'     =>  'sessions#new'
+  post   'login'     =>  'sessions#create'
+  delete 'logout'    =>  'sessions#destroy'
 
   resources :responses
   resources :projects
