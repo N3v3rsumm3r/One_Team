@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get    'requests'  =>  'requests#index'
   get    'projects'  =>  'projects#index'
   get    'users'     =>  'users#index'
+  get    'signup'    =>  'users#new'
   get    'login'     =>  'sessions#new'
   post   'login'     =>  'sessions#create'
   delete 'logout'    =>  'sessions#destroy'
