@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   get 'sessions/new'
 
-  root                   'requests#index'
+  root                   'sessions#new'
   get    'requests'  =>  'requests#index'
   get    'projects'  =>  'projects#index'
   get    'users'     =>  'users#index'

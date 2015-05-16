@@ -35,7 +35,7 @@
         <%= f.number_field :years_with_company %>
       </div>
       <div class="field">
-        <%= f.label :department_id %>*<br>
+        <%= f.label :department_id, "Department*" %><br>
         <%= f.collection_select :department_id, @department, :id, :name, include_blank: '', 
                                  class: 'form-control' %>
       </div>

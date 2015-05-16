@@ -1,4 +1,5 @@
 class RequestsController < ApplicationController
+  before_action :logged_in_user
   before_action :set_request, only: [:show, :edit, :update, :destroy]
 
   # GET /requests
@@ -81,9 +82,20 @@ class RequestsController < ApplicationController
     def set_request
       @request = Request.find(params[:id])
     end
+  
+    def logged_in_user
+      unless logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
       params.require(:request).permit(:name, :description, :start_date, :end_date, :open, :project_id, :location_id, :department_id, :group_id, :user_id)
     end
+    
+    
+  
+  
 end

@@ -19,6 +19,13 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
   
+  #returns the hash digest of the given string
+  def User.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                                                  BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
+  end
+      
   def skill_list
     @skill.all.each do |skill|
       skill.name
