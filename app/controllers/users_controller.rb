@@ -84,6 +84,7 @@ class UsersController < ApplicationController
     
     def logged_in_user
       unless logged_in?
+        store_location
         flash[:danger] = "Please log in."
         redirect_to login_url
       end
@@ -91,7 +92,9 @@ class UsersController < ApplicationController
   
     def correct_user
       @user = User.find(params[:id])
-      flash[:danger] = "You do not have access to this action."
+      if !current_user?(@user)
+        flash[:danger] = "You do not have access to this action."
+      end
       redirect_to(users_path) unless current_user?(@user)
     end
   
