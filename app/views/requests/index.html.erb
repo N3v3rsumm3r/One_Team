@@ -35,7 +35,11 @@
           <td><%= request.user.full_name %></td>
           <td><%= link_to 'Show', request %></td>
           <td><%= link_to 'Edit', edit_request_path(request) %></td>
-          <td><%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td>
+            <% if current_user.admin? %>
+              <%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>

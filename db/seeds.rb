@@ -52,7 +52,7 @@ Skill.create!([
   ])
 
 User.create!([
-  {first_name: "Anne", last_name: "Chen", email: "achen@example.com", department_id: "1", location_id: "1", position_id: "3", group_id: "1", years_with_company: "8", password: "Testpass", password_confirmation: "Testpass"},
+  {first_name: "Anne", last_name: "Chen", email: "achen@example.com", department_id: "1", location_id: "1", position_id: "3", group_id: "1", years_with_company: "8", password: "Testpass", password_confirmation: "Testpass", admin: true},
   ])
 
 Project.create!([

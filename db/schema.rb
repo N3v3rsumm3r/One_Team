@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150517205700) do
+ActiveRecord::Schema.define(version: 20150525204412) do
 
   create_table "assignments", force: :cascade do |t|
     t.integer  "request_id"
@@ -114,9 +114,10 @@ ActiveRecord::Schema.define(version: 20150517205700) do
     t.integer  "manager_id"
     t.integer  "years_with_company"
     t.string   "password_digest"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
     t.string   "remember_digest"
+    t.boolean  "admin",              default: false
   end
 
 end
