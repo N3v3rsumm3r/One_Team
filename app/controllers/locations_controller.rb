@@ -1,4 +1,5 @@
 class LocationsController < ApplicationController
+  before_action :logged_in_user
   before_action :set_location, only: [:show, :edit, :update, :destroy]
 
   # GET /locations
@@ -65,6 +66,13 @@ class LocationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_location
       @location = Location.find(params[:id])
+    end
+  
+    def logged_in_user
+      unless logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

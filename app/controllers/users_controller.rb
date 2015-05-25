@@ -91,7 +91,8 @@ class UsersController < ApplicationController
   
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
+      flash[:danger] = "You do not have access to this action."
+      redirect_to(users_path) unless current_user?(@user)
     end
   
     # Never trust parameters from the scary internet, only allow the white list through.
