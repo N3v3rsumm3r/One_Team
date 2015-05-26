@@ -55,6 +55,18 @@ User.create!([
   {first_name: "Anne", last_name: "Chen", email: "achen@example.com", department_id: "1", location_id: "1", position_id: "3", group_id: "1", years_with_company: "8", password: "Testpass", password_confirmation: "Testpass", admin: true},
   ])
 
+User.create!([
+  {first_name: "Spencer", last_name: "Wilow", email: "swilow@example.com", department_id: "1", location_id: "1", position_id: "1", group_id: "1", years_with_company: "3", password: "anex123", password_confirmation: "anex123", admin: false},
+  ])
+
+User.create!([
+  {first_name: "Maria", last_name: "Del Toro", email: "mdeltoro@example.com", department_id: "1", location_id: "2", position_id: "4", group_id: "2", years_with_company: "6", password: "anex123", password_confirmation: "anex123", admin: false},
+  ])
+
+User.create!([
+  {first_name: "Francis", last_name: "Telluro", email: "ftelluro@example.com", department_id: "1", location_id: "2", position_id: "3", group_id: "1", years_with_company: "4", password: "anex123", password_confirmation: "anex123", admin: true},
+  ])
+
 Project.create!([
   {name: 'Example Project 1', description: 'An example of how a real project may look', start_date: '2015-03-28', end_date: '2018-03-29', user_id: '1'}
   ])
