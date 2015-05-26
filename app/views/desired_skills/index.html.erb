@@ -18,7 +18,11 @@
         <td><%= desired_skill.skill_id %></td>
         <td><%= link_to 'Show', desired_skill %></td>
         <td><%= link_to 'Edit', edit_desired_skill_path(desired_skill) %></td>
-        <td><%= link_to 'Destroy', desired_skill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+          <% if current_user.admin? %>
+            <%= link_to 'Destroy', desired_skill, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

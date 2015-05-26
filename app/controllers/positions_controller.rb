@@ -1,5 +1,4 @@
 class PositionsController < ApplicationController
-  before_action :logged_in_user
   before_action :set_position, only: [:show, :edit, :update, :destroy]
 
   # GET /positions
@@ -66,13 +65,6 @@ class PositionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_position
       @position = Position.find(params[:id])
-    end
-  
-    def logged_in_user
-      unless logged_in?
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
