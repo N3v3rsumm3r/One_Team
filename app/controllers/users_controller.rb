@@ -36,7 +36,7 @@ class UsersController < ApplicationController
       if @user.save
         log_in @user
         flash[:success] = "Welcome to the One Team Application"
-        format.html { redirect_to edit_user_path(@user) }
+        format.html { redirect_to @user }
       else
         format.html { render :new }
       end
@@ -52,7 +52,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       @user = User.find(params[:id])
       if @user.update_attributes(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        flash.now[:notice] = "User was successfully updated."
+        format.html { redirect_to @user }
       else
         format.html { render :edit }
       end
