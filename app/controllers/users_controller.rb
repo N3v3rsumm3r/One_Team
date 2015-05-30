@@ -36,7 +36,7 @@ class UsersController < ApplicationController
       if @user.save
         log_in @user
         flash[:success] = "Welcome to the One Team Application"
-        format.html { redirect_to @user }
+        format.html { redirect_to edit_user_path(@user) }
       else
         format.html { render :new }
       end

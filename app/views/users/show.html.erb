@@ -22,23 +22,43 @@
     </div>
     <div class="col-md-4">
       <strong>Years with company:</strong>
-      <%= @user.years_with_company %>
+      <% if @user.years_with_company.nil? %>
+        Please Update Profile
+      <% else %>
+        <%= @user.years_with_company %>
+      <% end %>        
     </div>
     <div class="col-md-4">
       <strong>Department:</strong>
-      <%= @user.department.name %>
+      <% if @user.department.nil? %>
+        Please Update Profile
+      <% else %>
+        <%= @user.department.name %>
+      <% end %>
     </div>
     <div class="col-md-4">
       <strong>Location:</strong>
-      <%= @user.location.name %>
+      <% if @user.location.nil? %>
+        Please Update Profile
+      <% else %>
+        <%= @user.location.name %>
+      <% end %>
     </div>
     <div class="col-md-4">
       <strong>Position:</strong>
-      <%= @user.position.name %> 
+      <% if @user.position.nil? %>
+        Please Update Profile
+      <% else %>
+        <%= @user.position.name %> 
+      <% end %>
     </div>
     <div class="col-md-4">
       <strong>Group:</strong>
-      <%= @user.group.name %>
+      <% if @user.group.nil? %>
+        Please Update Profile
+      <% else %>
+        <%= @user.group.name %>
+      <% end %>
     </div>
     <div class="col-md-4">
       <strong>Current Skills:</strong>
