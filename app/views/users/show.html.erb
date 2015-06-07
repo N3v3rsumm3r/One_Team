@@ -30,35 +30,19 @@
     </div>
     <div class="col-md-4">
       <strong>Department:</strong>
-      <% if @user.department.nil? %>
-        Please Update Profile
-      <% else %>
-        <%= @user.department.name %>
-      <% end %>
+      <%= request_if_missing(@user, :department, :name) %>
     </div>
     <div class="col-md-4">
       <strong>Location:</strong>
-      <% if @user.location.nil? %>
-        Please Update Profile
-      <% else %>
-        <%= @user.location.name %>
-      <% end %>
+      <%= request_if_missing(@user, :location, :name) %>
     </div>
     <div class="col-md-4">
       <strong>Position:</strong>
-      <% if @user.position.nil? %>
-        Please Update Profile
-      <% else %>
-        <%= @user.position.name %> 
-      <% end %>
+      <%= request_if_missing(@user, :position, :name) %>
     </div>
     <div class="col-md-4">
       <strong>Group:</strong>
-      <% if @user.group.nil? %>
-        Please Update Profile
-      <% else %>
-        <%= @user.group.name %>
-      <% end %>
+      <%= request_if_missing(@user, :group, :name) %>
     </div>
     <div class="col-md-4">
       <strong>Current Skills:</strong>
