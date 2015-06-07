@@ -1,4 +1,5 @@
 class Request < ActiveRecord::Base
+  include DateValidate
   belongs_to :project
   belongs_to :location
   belongs_to :department
@@ -18,15 +19,4 @@ class Request < ActiveRecord::Base
   validates :user_id, presence: true
   validate :end_date_cannot_be_in_past, :end_date_cannot_be_before_start_date
   
-  def end_date_cannot_be_in_past
-    if start_date.present? && start_date < Date.today
-      errors.add(:end_date, "cannot be in the past.")
-    end
-  end
-  
-  def end_date_cannot_be_before_start_date
-    if end_date < start_date
-      errors.add(:end_date, "cannot be before the start date")
-    end
-  end
 end

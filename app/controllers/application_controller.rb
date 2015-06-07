@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :admin_user , only: :destroy
   protect_from_forgery with: :exception
   include SessionsHelper
+  include NilValueHelper
   
   
   private

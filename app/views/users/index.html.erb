@@ -23,32 +23,16 @@
         <td><%= user.last_name %></td>
         <td><%= user.email %></td>
         <td>
-          <% if user.department.nil? %>
-            Please update your profile.
-          <% else %>
-            <%= user.department.name %>
-          <% end %>
+          <%= request_if_missing(user, :department, :name) %>
         </td>
         <td>
-          <% if user.department.nil? %>
-            Please update your profile.
-          <% else %>
-            <%= user.location.name %>
-          <% end %>
+          <%= request_if_missing(user, :location, :name) %>
         </td>
         <td>
-          <% if user.department.nil? %>
-            Please update your profile.
-          <% else %>
-            <%= user.position.name %>
-          <% end %>
+          <%= request_if_missing(user, :position, :name) %>
         </td>
         <td>
-          <% if user.department.nil? %>
-            Please update your profile.
-          <% else %>
-            <%= user.group.name %>
-          <% end %>
+          <%= request_if_missing(user, :group, :name) %>
         </td>
         <td>
           <% if user.manager.nil? %>

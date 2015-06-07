@@ -1,7 +1,8 @@
 <% provide(:title, 'Edit User') %>
+<%= form_for(@user) do |f| %>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@user) do |f| %>
+    
       <% if @user.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -42,7 +43,7 @@
       <div class="field">
         <%= f.label :location_id %>*<br>
         <%= f.collection_select :location_id, @location, :id, :name,
-                                include_blank: '', class: 'form-control' %>
+include_blank: 'Test', class: 'form-control' %>
       </div>
       <div class="field">
         <%= f.label :position_id %>*<br>
