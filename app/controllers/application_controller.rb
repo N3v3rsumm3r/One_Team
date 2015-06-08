@@ -18,6 +18,9 @@ class ApplicationController < ActionController::Base
   end
   
   def admin_user
+    if !current_user.admin?
+      flash[:danger] = "You are not an admin user."
+    end
     redirect_to(root_url) unless current_user.admin?
   end
 end

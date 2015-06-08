@@ -1,5 +1,6 @@
 class RequestsController < ApplicationController
   before_action :set_request, only: [:show, :edit, :update, :destroy]
+  before_action :owner, only:[:edit, :update, :destroy]
 
   # GET /requests
   # GET /requests.json
@@ -81,6 +82,15 @@ class RequestsController < ApplicationController
     def set_request
       @request = Request.find(params[:id])
     end
+  
+  def owner
+    @request = Request.find(params[:id])
+    if !owner_of?(@request)
+      flash[:danger] = "You do not have access to this action."
+    end
+    redirect_to(requests_path) unless owner_of?(@request)
+  end
+    
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
