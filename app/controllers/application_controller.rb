@@ -23,4 +23,12 @@ class ApplicationController < ActionController::Base
     end
     redirect_to(root_url) unless current_user.admin?
   end
+  
+  def owner_admin
+      @request = Request.find(params[:id])
+      if !owner_of?(@request) && !current_user.admin?
+        flash[:danger] = "You do not have access to this action."
+        redirect_to(requests_path)
+      end
+    end
 end

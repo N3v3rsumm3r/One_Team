@@ -1,5 +1,7 @@
 class ProjectsController < ApplicationController
+  skip_before_action :admin_user
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :owner_admin, only: [:edit, :update, :destroy]
 
   # GET /projects
   # GET /projects.json
@@ -15,19 +17,19 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
-    @user = User.all
+    @users = User.all
   end
 
   # GET /projects/1/edit
   def edit
-    @user = User.all
+    @users = User.all
   end
 
   # POST /projects
   # POST /projects.json
   def create
     @project = Project.new(project_params)
-    @user = User.all
+    @users = User.all
 
     respond_to do |format|
       if @project.save
@@ -44,11 +46,15 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1.json
   def update
     respond_to do |format|
+      puts "Prior to update action in the update method."
       if @project.update(project_params)
-        format.html { redirect_to @project, notice: 'Project was successfully updated.' }
+        puts "Update method has successfully run."
+        format.html { redirect_to @project, notice: 'Project was successfully updated.'; puts "Redirect to project has succeeded." }
         format.json { render :show, status: :ok, location: @project }
       else
-        format.html { render :edit }
+        puts "Update method has failed, should render edit."
+        @users = User.all
+        format.html { render :edit ; puts "Render edit has succeeded" }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
@@ -68,6 +74,10 @@ class ProjectsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.find(params[:id])
+    end
+  
+    def collection_resources
+      @users = User.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

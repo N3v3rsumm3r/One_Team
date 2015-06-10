@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :logged_in_user, only: [:new, :create]
   before_action :correct_user, only: [:edit, :update]
-  before_action :collection_resources, only: [:edit, :new]
+  before_action :collection_resources, only: [:edit, :new, :update]
 
 
   # GET /users

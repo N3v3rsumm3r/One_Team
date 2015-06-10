@@ -1,6 +1,8 @@
 class RequestsController < ApplicationController
+  skip_before_action :admin_user
   before_action :set_request, only: [:show, :edit, :update, :destroy]
-  before_action :owner, only:[:edit, :update, :destroy]
+  before_action :owner_admin, only: [:edit, :update, :destroy]
+  before_action :collection_resources, only: [:edit, :create, :new, :update]
 
   # GET /requests
   # GET /requests.json
@@ -16,31 +18,19 @@ class RequestsController < ApplicationController
   # GET /requests/new
   def new
     @request = Request.new
-    @project = Project.all
-    @location = Location.all
-    @department = Department.all
-    @group = Group.all
-    @user = User.all
+
   end
 
   # GET /requests/1/edit
   def edit
-    @project = Project.all
-    @location = Location.all
-    @department = Department.all
-    @group = Group.all
-    @user = User.all
+
   end
 
   # POST /requests
   # POST /requests.json
   def create
     @request = Request.new(request_params)
-    @project = Project.all
-    @location = Location.all
-    @department = Department.all
-    @group = Group.all
-    @user = User.all
+
 
     respond_to do |format|
       if @request.save
@@ -83,21 +73,17 @@ class RequestsController < ApplicationController
       @request = Request.find(params[:id])
     end
   
-  def owner
-    @request = Request.find(params[:id])
-    if !owner_of?(@request)
-      flash[:danger] = "You do not have access to this action."
+    def collection_resources
+      @project = Project.all
+      @location = Location.all
+      @department = Department.all
+      @group = Group.all
+      @user = User.all
     end
-    redirect_to(requests_path) unless owner_of?(@request)
-  end
     
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
       params.require(:request).permit(:name, :description, :start_date, :end_date, :open, :project_id, :location_id, :department_id, :group_id, :user_id)
     end
-    
-    
-  
-  
 end
