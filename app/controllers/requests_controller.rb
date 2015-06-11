@@ -74,11 +74,11 @@ class RequestsController < ApplicationController
     end
   
     def collection_resources
-      @project = Project.all
-      @location = Location.all
-      @department = Department.all
-      @group = Group.all
-      @user = User.all
+      @projects = Project.all
+      @locationss = Location.all
+      @departments = Department.all
+      @groups = Group.all
+      @users = User.all
     end
   
     def owner_admin

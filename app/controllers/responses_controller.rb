@@ -1,5 +1,7 @@
 class ResponsesController < ApplicationController
+  skip_before_action :admin
   before_action :set_response, only: [:show, :edit, :update, :destroy]
+  before_action :owner_admin, [:edit, :update, :destroy]
 
   # GET /responses
   # GET /responses.json
@@ -65,6 +67,14 @@ class ResponsesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_response
       @response = Response.find(params[:id])
+    end
+  
+    def owner_admin
+      @response = Response.find(params[:id])
+      if !owner_of?(@response) && !current_user.admin?
+        flash[:danger] = "You do not have access to this action."
+        redirect_to(requests_path)
+      end
     end
 
 

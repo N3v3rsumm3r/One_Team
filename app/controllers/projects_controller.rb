@@ -1,7 +1,5 @@
 class ProjectsController < ApplicationController
-  skip_before_action :admin_user
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  before_action :owner_admin, only: [:edit, :update, :destroy]
 
   # GET /projects
   # GET /projects.json
@@ -80,14 +78,7 @@ class ProjectsController < ApplicationController
       @users = User.all
     end
   
-    def owner_admin
-      @project = Project.find(params[:id])
-      if !owner_of?(@project) && !current_user.admin?
-        flash[:danger] = "You do not have access to this action."
-        redirect_to(projects_path)
-      end
-    end
-
+    
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:name, :description, :start_date, :end_date, :user_id)
