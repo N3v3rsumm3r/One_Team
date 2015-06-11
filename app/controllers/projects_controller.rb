@@ -79,6 +79,14 @@ class ProjectsController < ApplicationController
     def collection_resources
       @users = User.all
     end
+  
+    def owner_admin
+      @project = Project.find(params[:id])
+      if !owner_of?(@project) && !current_user.admin?
+        flash[:danger] = "You do not have access to this action."
+        redirect_to(projects_path)
+      end
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params

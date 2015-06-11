@@ -26,7 +26,7 @@
           <td><%= link_to 'Show', project %></td>
           <td><%= link_to 'Edit', edit_project_path(project) %></td>
           <td>
-            <% if current_user.admin? %>
+            <% if current_user.admin? || owner_of?(project)%>
               <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %>
             <% end %>
           </td>
