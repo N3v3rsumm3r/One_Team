@@ -75,7 +75,7 @@ class RequestsController < ApplicationController
   
     def collection_resources
       @projects = Project.all
-      @locationss = Location.all
+      @locations = Location.all
       @departments = Department.all
       @groups = Group.all
       @users = User.all

@@ -75,11 +75,11 @@ class UsersController < ApplicationController
     end
   
     def collection_resources
-      @location = Location.all
-      @position = Position.all
-      @group = Group.all
-      @department = Department.all
-      @skill = Skill.all
+      @locations = Location.all
+      @positions = Position.all
+      @groups = Group.all
+      @departments = Department.all
+      @skills = Skill.all
     end
   
     def correct_user

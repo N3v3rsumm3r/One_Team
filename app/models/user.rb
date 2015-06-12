@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
   has_secure_password
   validates :password, length: {minimum: 6}, on: :create
-  validates :department_id, presence: true, allow_blank: true, on: :update
+  validates :department_id, presence: true, on: :update
   validates :location_id, presence: true, on: :update
   validates :position_id, presence: true, on: :update
   validates :group_id, presence: true, on: :update

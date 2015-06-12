@@ -37,27 +37,27 @@
       </div>
       <div class="field">
         <%= f.label :department_id, "Department*" %><br>
-        <%= f.collection_select :department_id, @department, :id, :name, include_blank: '', 
-                                 class: 'form-control' %>
+        <%= f.collection_select :department_id, @departments, :id, :name, 
+                                include_blank: '', class: 'form-control' %>
       </div>
       <div class="field">
         <%= f.label :location_id %>*<br>
-        <%= f.collection_select :location_id, @location, :id, :name,
-include_blank: 'Test', class: 'form-control' %>
+        <%= f.collection_select :location_id, @locations, :id, :name,
+                                include_blank: '', class: 'form-control' %>
       </div>
       <div class="field">
         <%= f.label :position_id %>*<br>
-        <%= f.collection_select :position_id, @position, :id, :name,
+        <%= f.collection_select :position_id, @positions, :id, :name,
                                 include_blank: '', class: 'form-control' %>
       </div>
       <div class="field">
         <%= f.label :group_id %>*<br>
-        <%= f.collection_select :group_id, @group, :id, :name,
+        <%= f.collection_select :group_id, @groups, :id, :name,
                                 include_blank: '', class: 'form-control' %>
       </div>
       <label>Current Skills</label>
       <div class="checkbox_field">
-        <% @skill.all.each do |skill| %>
+        <% @skills.all.each do |skill| %>
           <div class="skill_name">
             <%= skill.name %> 
           </div>
@@ -67,7 +67,7 @@ include_blank: 'Test', class: 'form-control' %>
       </div><br>
       <label>Desired Skills</label>
       <div class="checkbox_field">
-        <% @skill.all.each do |skill| %>
+        <% @skills.all.each do |skill| %>
           <div class="skill_name">
             <%= skill.name %>  
           </div>
