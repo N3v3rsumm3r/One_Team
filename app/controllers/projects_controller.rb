@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :owner, only: [:edit]
 
   # GET /projects
   # GET /projects.json
@@ -72,6 +73,14 @@ class ProjectsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_project
       @project = Project.find(params[:id])
+    end
+  
+    def owner
+      @project = Project.find(params[:id])
+      if !owner_of?(@project)
+        flash[:danger] = "You do not have access to this action."
+        redirect_to(projects_path)
+      end
     end
   
     def collection_resources
