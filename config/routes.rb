@@ -11,10 +11,11 @@ Rails.application.routes.draw do
   post   'login'     =>  'sessions#create'
   delete 'logout'    =>  'sessions#destroy'
 
-  resources :responses
   resources :projects
   resources :needed_skills
-  resources :requests
+  resources :requests do
+      resources :responses
+  end
   resources :desired_skills
   resources :current_skills
   resources :users

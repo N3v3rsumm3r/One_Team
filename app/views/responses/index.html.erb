@@ -14,20 +14,9 @@
   <tbody>
     <% @responses.each do |response| %>
       <tr>
-        <td><%= response.user_id %></td>
-        <td><%= response.request_id %></td>
-        <td><%= link_to 'Show', response %></td>
-        <td><%= link_to 'Edit', edit_response_path(response) %></td>
-        <td>
-          <% if current_user.admin? %>
-            <%= link_to 'Destroy', response, method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% end %> 
-        </td>
+        <td><%= response.user.full_name %></td>
+        <td><%= response.request.name %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Response', new_response_path %>

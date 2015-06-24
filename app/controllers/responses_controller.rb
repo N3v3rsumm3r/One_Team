@@ -1,7 +1,8 @@
 class ResponsesController < ApplicationController
-  skip_before_action :admin
+  skip_before_action :admin_user
   before_action :set_response, only: [:show, :edit, :update, :destroy]
-  before_action :owner_admin, [:edit, :update, :destroy]
+  #before_action :owner_admin, [:edit, :update, :destroy]
+  before_action :collection_resources, only: [:show, :edit, :update, :new]
 
   # GET /responses
   # GET /responses.json
@@ -16,7 +17,8 @@ class ResponsesController < ApplicationController
 
   # GET /responses/new
   def new
-    @response = Response.new
+    @request = Request.find_by_id(params[:request_id])
+    @response = @request.responses.build
   end
 
   # GET /responses/1/edit
@@ -26,15 +28,13 @@ class ResponsesController < ApplicationController
   # POST /responses
   # POST /responses.json
   def create
-    @response = Response.new(response_params)
+    @response = current_user.responses.build(response_params)
 
     respond_to do |format|
       if @response.save
-        format.html { redirect_to @response, notice: 'Response was successfully created.' }
-        format.json { render :show, status: :created, location: @response }
+        format.html { redirect_to requests_path, notice: 'Response was successfully created.' }
       else
-        format.html { render :new }
-        format.json { render json: @response.errors, status: :unprocessable_entity }
+        format.html { redirect_to requests_path, notice: 'Response was not saved.' }
       end
     end
   end
@@ -45,10 +45,8 @@ class ResponsesController < ApplicationController
     respond_to do |format|
       if @response.update(response_params)
         format.html { redirect_to @response, notice: 'Response was successfully updated.' }
-        format.json { render :show, status: :ok, location: @response }
       else
         format.html { render :edit }
-        format.json { render json: @response.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -59,7 +57,6 @@ class ResponsesController < ApplicationController
     @response.destroy
     respond_to do |format|
       format.html { redirect_to responses_url, notice: 'Response was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
@@ -68,18 +65,16 @@ class ResponsesController < ApplicationController
     def set_response
       @response = Response.find(params[:id])
     end
-  
-    def owner_admin
-      @response = Response.find(params[:id])
-      if !owner_of?(@response) && !current_user.admin?
-        flash[:danger] = "You do not have access to this action."
-        redirect_to(requests_path)
-      end
+    
+    def collection_resources
+      @users = User.all
     end
+  
+
 
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def response_params
-      params.require(:response).permit(:user_id, :request_id)
+      params.require(:response).permit(:user_id, :request_id, :comment)
     end
 end
