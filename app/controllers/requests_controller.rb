@@ -8,6 +8,7 @@ class RequestsController < ApplicationController
   # GET /requests.json
   def index
     @requests = Request.all
+    @responses = Response.all
   end
 
   # GET /requests/1

@@ -33,7 +33,12 @@
             <td><%= request.user.full_name %></td>
             <td><%= link_to 'Show', request %></td>
             <td><%= link_to 'Edit', edit_request_path(request) %></td>
-            <td><%= link_to 'Show Interest', new_request_response_path(request) %></td>
+            <td>
+              <% if request.responders.include?(current_user) %>
+                <%= link_to 'Modify your response.', edit_request_response_path(request, current_response(request,current_user)) %>
+              <% else %>
+                <%= link_to 'Respond to request.', new_request_response_path(request) %></td>
+              <% end %>
             <td>
               <% if current_user.admin? || owner_of?(request) %>
                 <%= link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -45,50 +50,7 @@
     </table>
     <% else %>
       <div class="center_text">
-        There are no closed requests.
-      </div>
-    <% end %>
-</div>
-<br>
-
-<div id="closed">
-  <h2>Closed Requests</h2>
-    <% if @requests.where(:open => false).any? %>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Start date</th>
-          <th>End date</th>
-          <th>Project Association</th>
-          <th>Location</th>
-          <th>Department</th>
-          <th>Group</th>
-          <th>Created by</th>
-        </tr>
-      </thead>
-  
-      <tbody>
-        <% @requests.where(:open => false).each do |request| %>
-          <tr>
-            <td><%= request.name %></td>
-            <td><%= request.description %></td>
-            <td><%= request.start_date %></td>
-            <td><%= request.end_date %></td>
-            <td><%= request.project.name %></td>
-            <td><%= request.location.name%></td>
-            <td><%= request.department.name %></td>
-            <td><%= request.group.name %></td>
-            <td><%= request.user.full_name %></td>
-            <td><%= link_to 'Show', request %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <% else %>
-      <div class="center_text">
-        There are no closed requests.
+        There are no open requests.
       </div>
     <% end %>
 </div>

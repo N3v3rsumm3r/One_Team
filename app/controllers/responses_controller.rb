@@ -23,6 +23,8 @@ class ResponsesController < ApplicationController
 
   # GET /responses/1/edit
   def edit
+    @request = Request.find_by_id(params[:request_id])
+    @response = @request.responses.find(params[:id])
   end
 
   # POST /responses
@@ -42,9 +44,11 @@ class ResponsesController < ApplicationController
   # PATCH/PUT /responses/1
   # PATCH/PUT /responses/1.json
   def update
+    @request = Request.find_by_id(params[:request_id])
+    @response = @request.responses.find(params[:id])
     respond_to do |format|
-      if @response.update(response_params)
-        format.html { redirect_to @response, notice: 'Response was successfully updated.' }
+      if @response.update_attributes(response_params)
+        format.html { redirect_to requests_path, notice: 'Response was successfully updated.' }
       else
         format.html { render :edit }
       end

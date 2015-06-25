@@ -7,6 +7,8 @@ class Request < ActiveRecord::Base
   belongs_to :user
   has_many :skills, through: :needed_skills
   has_many :responses
+  has_many :responders, through: :responses, :source => :user
+  accepts_nested_attributes_for :responses
   
   validates :name, presence: true
   validates :description, presence: true
