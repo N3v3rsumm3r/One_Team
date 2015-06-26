@@ -56,9 +56,9 @@
                                 include_blank: '', class: 'form-control' %>
       </div>
       <label>Current Skills</label>
-      <div class="checkbox_field">
+      <div class = "checkbox_field">
         <% @skills.all.each do |skill| %>
-          <div class="skill_name">
+          <div class = "skill_name">
             <%= skill.name %> 
           </div>
           <%= check_box_tag  "user[skill_ids][]", skill.id, @user.skill_ids.include?(skill.id) %>

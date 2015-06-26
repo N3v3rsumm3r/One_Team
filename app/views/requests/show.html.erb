@@ -7,7 +7,12 @@
   <strong>Description:</strong>
   <%= @request.description %>
 </p>
-
+<p>
+  <strong>Needed Skills:</strong>
+  <% @request.skills.each do |skill| %>
+    <li><%= skill.name %></li>
+  <% end %>
+</p>
 <p>
   <strong>Start date:</strong>
   <%= @request.start_date %>

@@ -19,20 +19,18 @@ class RequestsController < ApplicationController
   # GET /requests/new
   def new
     @request = Request.new
-
   end
 
   # GET /requests/1/edit
   def edit
-
   end
 
   # POST /requests
   # POST /requests.json
   def create
     @request = Request.new(request_params)
-
-
+    
+  
     respond_to do |format|
       if @request.save
         format.html { redirect_to @request, notice: 'Request was successfully created.' }
@@ -47,6 +45,9 @@ class RequestsController < ApplicationController
   # PATCH/PUT /requests/1
   # PATCH/PUT /requests/1.json
   def update
+    
+    params[:request][:skill_ids] ||= []
+    
     respond_to do |format|
       if @request.update(request_params)
         format.html { redirect_to @request, notice: 'Request was successfully updated.' }
@@ -80,6 +81,7 @@ class RequestsController < ApplicationController
       @departments = Department.all
       @groups = Group.all
       @users = User.all
+      @skills = Skill.all
     end
   
     def owner_admin
@@ -93,6 +95,6 @@ class RequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
-      params.require(:request).permit(:name, :description, :start_date, :end_date, :open, :project_id, :location_id, :department_id, :group_id, :user_id)
+      params.require(:request).permit(:name, :description, :start_date, :end_date, :open, :project_id, :location_id, :department_id, :group_id, :user_id, :skill_ids => [])
     end
 end

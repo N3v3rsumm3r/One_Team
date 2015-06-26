@@ -37,22 +37,37 @@
         <%=f.label :project_id , "Associated Project*" %>
         <%= f.collection_select :project_id, @projects, :id, :name,
                                 include_blank: '', class: 'form-control' %>
+      </div>
       <div class="field">
         <%=f.label :location_id , "Location*" %>
         <%= f.collection_select :location_id, @locations, :id, :name,
                                 include_blank: '', class: 'form-control' %>
+      </div>
       <div class="field">
           <%=f.label :department_id , "Department*" %>
           <%= f.collection_select :department_id, @departments, :id, :name,
                                   include_blank: '', class: 'form-control' %>
+      </div>
       <div class="field">
         <%=f.label :group_id , "Group*" %>
         <%= f.collection_select :group_id, @groups, :id, :name,
                                 include_blank: '', class: 'form-control' %>
+      </div>
       <div class="field">
         <%=f.label :user_id , "User Making Request*" %>
         <%= f.collection_select :user_id, @users, :id, :full_name,
                                 include_blank: '', class: 'form-control' %>
+      </div>
+      <label>Needed Skills</label>
+      <div class = "checkbox_field">
+        <% @skills.all.each do |skill| %>
+          <div class = "skill_name">
+            <%= skill.name %>
+          </div>
+          <%= check_box_tag "request[skill_ids][]", skill.id, @request.skill_ids.include?(skill.id) %>
+          <br>
+        <% end %>
+      </div>
       <div class="actions">
         <%= f.submit %>
       </div>

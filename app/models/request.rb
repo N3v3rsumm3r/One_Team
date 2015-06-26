@@ -5,6 +5,7 @@ class Request < ActiveRecord::Base
   belongs_to :department
   belongs_to :group
   belongs_to :user
+  has_many :needed_skills
   has_many :skills, through: :needed_skills
   has_many :responses
   has_many :responders, through: :responses, :source => :user
