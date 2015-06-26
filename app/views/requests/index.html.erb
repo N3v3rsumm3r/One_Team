@@ -36,6 +36,7 @@
             <td>
               <% if request.responders.include?(current_user) %>
                 <%= link_to 'Modify your response.', edit_request_response_path(request, current_response(request,current_user)) %>
+                <%= link_to 'Revoke reponse to request', request_response_path(request, current_response(request,current_user)), method: :delete, data: { confirm: 'Are you sure?' } %>
               <% else %>
                 <%= link_to 'Respond to request.', new_request_response_path(request) %></td>
               <% end %>

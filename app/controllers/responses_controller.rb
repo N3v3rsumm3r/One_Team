@@ -60,7 +60,7 @@ class ResponsesController < ApplicationController
   def destroy
     @response.destroy
     respond_to do |format|
-      format.html { redirect_to responses_url, notice: 'Response was successfully destroyed.' }
+      format.html { redirect_to requests_path, notice: 'Response was successfully destroyed.' }
     end
   end
 
