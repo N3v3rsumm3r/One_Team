@@ -5,7 +5,9 @@
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
           <li><%= link_to "Projects",    projects_path %></li>
-          <li><%= link_to "Requests",    requests_path %></li>
+          <li><%= link_to "Open Requests",  requests_path(:active => true) %></li>
+          <li><%= link_to "My Requests",    requests_path(:id => current_user) %></li>
+          <li><%= link_to "All Requests",  requests_path %></li>
           <li><%= link_to "Users",       users_path %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -13,7 +15,6 @@
             </a>
             <ul class="dropdown-menu">
               <li><%= link_to "Profile", current_user %></li>
-              <li><%= link_to "Settings", edit_user_path(current_user) %></li>
               <li class="divider"></li>
               <li>
                 <%= link_to "Log out", logout_path, method: "delete" %>

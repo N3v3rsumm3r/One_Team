@@ -2,7 +2,7 @@
 
 <div id="open">
   <h2>Open Requests</h2>
-  <% if @requests.where(:open => true).any? %>
+  <% if @requests.open %>
     <table>
       <thead>
         <tr>
@@ -20,7 +20,7 @@
       </thead>
   
       <tbody>
-        <% @requests.where(:open => true).each do |request| %>
+        <% @requests.each do |request| %>
           <tr>
             <td><%= request.name %></td>
             <td><%= request.description %></td>

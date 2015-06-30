@@ -7,7 +7,13 @@ class RequestsController < ApplicationController
   # GET /requests
   # GET /requests.json
   def index
-    @requests = Request.all
+    if params.include?(:id)
+      @requests = Request.open.where(user_id: params[:id])
+    elsif params.include?(:active)
+      @requests = Request.open
+    else
+      @requests = Request.all
+    end
     @responses = Response.all
   end
 

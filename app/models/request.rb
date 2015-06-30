@@ -11,6 +11,8 @@ class Request < ActiveRecord::Base
   has_many :responders, through: :responses, :source => :user
   accepts_nested_attributes_for :responses
   
+  scope :open, -> { where(open: true) }
+
   validates :name, presence: true
   validates :description, presence: true
   validates :start_date, presence: true
