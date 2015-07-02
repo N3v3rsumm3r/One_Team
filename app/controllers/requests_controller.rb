@@ -11,6 +11,8 @@ class RequestsController < ApplicationController
       @requests = Request.open.where(user_id: params[:id])
     elsif params.include?(:active)
       @requests = Request.open
+    elsif params.include?(:applied)
+      @requests = Request.joins(:responses).open.where("responses.user_id = ?", params[:applied])
     else
       @requests = Request.all
     end
@@ -18,7 +20,6 @@ class RequestsController < ApplicationController
   end
 
   # GET /requests/1
-  # GET /requests/1.json
   def show
   end
 
@@ -33,7 +34,6 @@ class RequestsController < ApplicationController
   end
 
   # POST /requests
-  # POST /requests.json
   def create
     @request = Request.new(request_params)
     
@@ -41,16 +41,13 @@ class RequestsController < ApplicationController
     respond_to do |format|
       if @request.save
         format.html { redirect_to @request, notice: 'Request was successfully created.' }
-        format.json { render :show, status: :created, location: @request }
       else
         format.html { render :new }
-        format.json { render json: @request.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # PATCH/PUT /requests/1
-  # PATCH/PUT /requests/1.json
   def update
     
     params[:request][:skill_ids] ||= []
@@ -58,10 +55,8 @@ class RequestsController < ApplicationController
     respond_to do |format|
       if @request.update(request_params)
         format.html { redirect_to @request, notice: 'Request was successfully updated.' }
-        format.json { render :show, status: :ok, location: @request }
       else
         format.html { render :edit }
-        format.json { render json: @request.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -72,7 +67,6 @@ class RequestsController < ApplicationController
     @request.destroy
     respond_to do |format|
       format.html { redirect_to requests_url, notice: 'Request was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 
