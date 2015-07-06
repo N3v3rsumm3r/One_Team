@@ -19,12 +19,14 @@ class ResponsesController < ApplicationController
   def new
     @request = Request.find_by_id(params[:request_id])
     @response = @request.responses.build
+    link_back
   end
 
   # GET /responses/1/edit
   def edit
     @request = Request.find_by_id(params[:request_id])
     @response = @request.responses.find(params[:id])
+    link_back
   end
 
   # POST /responses
@@ -34,7 +36,7 @@ class ResponsesController < ApplicationController
 
     respond_to do |format|
       if @response.save
-        format.html { redirect_to requests_path, notice: 'Response was successfully created.' }
+        format.html { redirect_to session.delete(:return_to), notice: 'Response was successfully created.' }
       else
         format.html { redirect_to requests_path, notice: 'Response was not saved.' }
       end
@@ -48,7 +50,7 @@ class ResponsesController < ApplicationController
     @response = @request.responses.find(params[:id])
     respond_to do |format|
       if @response.update_attributes(response_params)
-        format.html { redirect_to requests_path, notice: 'Response was successfully updated.' }
+        format.html { redirect_to session.delete(:return_to), notice: 'Response was successfully updated.' }
       else
         format.html { render :edit }
       end
@@ -58,9 +60,10 @@ class ResponsesController < ApplicationController
   # DELETE /responses/1
   # DELETE /responses/1.json
   def destroy
+    link_back
     @response.destroy
     respond_to do |format|
-      format.html { redirect_to requests_path, notice: 'Response was successfully destroyed.' }
+      format.html { redirect_to session.delete(:return_to), notice: 'Response was successfully destroyed.' }
     end
   end
 
