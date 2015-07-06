@@ -8,11 +8,11 @@ class RequestsController < ApplicationController
   # GET /requests.json
   def index
     if params.include?(:id)
-      @requests = Request.open.where(user_id: params[:id])
+      @requests = Request.where(user_id: params[:id])
     elsif params.include?(:active)
       @requests = Request.open
     elsif params.include?(:applied)
-      @requests = Request.joins(:responses).open.where("responses.user_id = ?", params[:applied])
+      @requests = Request.joins(:responses).open.where("responses.user_id = ?", current_user)
     else
       @requests = Request.all
     end
@@ -64,9 +64,10 @@ class RequestsController < ApplicationController
   # DELETE /requests/1
   # DELETE /requests/1.json
   def destroy
+    session[:return_to] ||= request.referer
     @request.destroy
     respond_to do |format|
-      format.html { redirect_to requests_url, notice: 'Request was successfully destroyed.' }
+      format.html { redirect_to session.delete(:return_to), notice: 'Request was successfully destroyed.' }
     end
   end
 
