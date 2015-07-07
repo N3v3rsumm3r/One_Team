@@ -71,5 +71,33 @@ Project.create!([
   {name: 'Example Project 1', description: 'An example of how a real project may look', start_date: '2015-03-28', end_date: '2018-03-29', user_id: '1'}
   ])
   
+Project.create!([
+  {name: 'Example Project 2', description: 'An example of how a real project may look', start_date: '2015-03-28', end_date: '2018-03-29', user_id: '4'}
+  ])
+  
+Project.create!([
+  {name: 'Example Project 3', description: 'An example of how a real project may look', start_date: '2015-03-28', end_date: '2018-03-29', user_id: '2'}
+  ])  
 Request.create!([
-  {name: 'Open Request', description: 'A request created by Anne Chen that is open', start_date: '2015-03-28', end_date: '2018-03-29', )
+  {name: 'Open Request', description: 'A request created by Anne Chen that is open', start_date: '2015-03-28', end_date: '2018-03-29', open: true, project_id: '1', department_id: '1', group_id: '1', location_id: '3', user_id: '1'}
+  ])
+  
+Request.create!([
+  {name: 'Open Request 2', description: 'A request created by Anne Chen that is open', start_date: '2015-03-28', end_date: '2018-03-29', open: true, project_id: '2', department_id: '1', group_id: '1', location_id: '3', user_id: '1'}
+  ])
+  
+Request.create!([
+  {name: 'Closed Request', description: 'A request created by Anne Chen that is closed', start_date: '2015-03-28', end_date: '2018-03-29', open: false, project_id: '1', department_id: '1', group_id: '1', location_id: '3', user_id: '1'}
+  ])
+  
+Request.create!([
+  {name: 'Closed Request 2', description: 'A request created by Anne Chen that is closed', start_date: '2015-03-28', end_date: '2018-03-29', open: false, project_id: '2', department_id: '1', group_id: '1', location_id: '3', user_id: '1'}
+  ]) 
+  
+Request.create!([
+  {name: 'Different User Request', description: 'A request created by Spencer Wilow that is open', start_date: '2015-03-28', end_date: '2018-03-29', open: true, project_id: '1', department_id: '1', group_id: '1', location_id: '3', user_id: '2'}
+  ])
+  
+Request.create!([
+  {name: 'Another User Request', description: 'A request created by Maria Del Toro that is open', start_date: '2015-03-28', end_date: '2018-03-29', open: true, project_id: '2', department_id: '1', group_id: '1', location_id: '3', user_id: '3'}
+  ])
