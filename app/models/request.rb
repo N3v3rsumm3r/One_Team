@@ -9,6 +9,8 @@ class Request < ActiveRecord::Base
   has_many :skills, through: :needed_skills
   has_many :responses
   has_many :responders, through: :responses, :source => :user
+  has_many :assignments
+  has_many :assignees, through: :assignments, :source => :user
   accepts_nested_attributes_for :responses
   
   scope :open, -> { where(open: true) }
