@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   get    'login'     =>  'sessions#new'
   post   'login'     =>  'sessions#create'
   delete 'logout'    =>  'sessions#destroy'
+  
+  post 'users/:user_id/requests/:request_id/assignments/new' => 'assignments#create', as: :create_assignment
+  delete 'assignment/:assignment_id' => 'assignments#destroy', as: :destroy_assignment
+
+
 
   resources :projects
   resources :needed_skills

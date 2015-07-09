@@ -1,7 +1,7 @@
 class RequestsController < ApplicationController
   skip_before_action :admin_user
-  before_action :set_request, only: [:show, :edit, :update, :destroy]
-  before_action :owner_admin, only: [:edit, :update, :destroy]
+  before_action :set_assignment, only: [:show, :edit, :update, :destroy]
+  #before_action :owner_admin, only: [:edit, :update, :destroy]
   before_action :collection_resources, only: [:edit, :create, :new, :update]
 
   # GET /requests
@@ -42,23 +42,9 @@ class RequestsController < ApplicationController
   
     respond_to do |format|
       if @request.save
-        format.html { redirect_to session.delete(:return_to), notice: 'Request was successfully created.' }
+        format.html { redirect_to session.delete(:return_to), notice: 'User was assigned to request.' }
       else
         format.html { render :new }
-      end
-    end
-  end
-
-  # PATCH/PUT /requests/1
-  def update
-    
-    params[:request][:skill_ids] ||= []
-
-    respond_to do |format|
-      if @request.update(request_params)
-        format.html { redirect_to session.delete(:return_to), notice: 'Request was successfully updated.' }
-      else
-        format.html { render :edit }
       end
     end
   end
@@ -67,9 +53,9 @@ class RequestsController < ApplicationController
   # DELETE /requests/1.json
   def destroy
     link_back
-    @request.destroy
+    Assignment.destroy(params[:assignment_id])
     respond_to do |format|
-      format.html { redirect_to session.delete(:return_to), notice: 'Request was successfully destroyed.' }
+      format.html { redirect_to session.delete(:return_to), notice: 'User was unassigned from request.' }
     end
   end
 

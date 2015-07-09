@@ -6,17 +6,22 @@
       Posted by <%= request.user.full_name %> in <%= request.location.name %> Office (Group: <%= request.group.name %>)<br>
       Description: <%= request.description %><br>
       <% if owner_of?(request) %>
-        <h2>Responses</h2>
+       <br> Responses:
         <% request.responses.each do |response| %>
           <div class="each_response">
             <%= link_to response.user.full_name, user_path(response.user) %>  Comment: <%= response.comment %>
+            <% if request.assignees.include?(response.user) %>
+              <%= link_to 'Unassign', destroy_assignment_path(current_assignment(request, response.user)), class: "btn btn-danger btn-xs", :method => :delete %>
+            <% else %>
+              <%= link_to 'Assign', create_assignment_path(request_id: request, user_id: response.user), class: "btn btn-primary btn-xs", :method => :post %>
+            <% end %>
           </div>
         <% end %>
       <% elsif request.assignees.include?(current_user) %>
         You've been assigned to this request!
       <% elsif request.responders.include?(current_user) %>
-        <%= link_to 'Modify  Response', edit_request_response_path(request, current_response(request,current_user)), class: "btn btn-primary" %>
-        <%= link_to 'Revoke Reponse', request_response_path(request, current_response(request,current_user)), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning" %>
+        <%= link_to 'Modify  Response', edit_request_response_path(request, current_response(request,current_user)), class: "btn btn-primary btn-sm" %>
+        <%= link_to 'Revoke Reponse', request_response_path(request, current_response(request,current_user)), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
       <% else %>
         <%= link_to 'Respond to Request.', new_request_response_path(request), class: "btn btn-primary" %></td>
       <% end %>
