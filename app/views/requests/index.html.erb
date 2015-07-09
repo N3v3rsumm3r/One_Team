@@ -2,7 +2,14 @@
 <div id="request_container">
   <% @requests.each do |request| %>
     <div class="each_request">
-      <%= request.name %>: <%= request.start_date %> - <%= request.end_date %><br>
+      <%= request.name %>: <%= request.start_date %> - <%= request.end_date %>
+      <% if request.start_date <= Date.today && Date.today <= request.end_date %>
+        (In Progress)
+      <% elsif request.start_date > Date.today %>
+        (Not Yet Begun)
+      <% else %>
+        (Request Ended)
+      <% end %><br>
       Posted by <%= request.user.full_name %> in <%= request.location.name %> Office (Group: <%= request.group.name %>)<br>
       Description: <%= request.description %><br>
       <% if owner_of?(request) %>
