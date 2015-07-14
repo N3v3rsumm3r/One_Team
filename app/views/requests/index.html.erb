@@ -2,7 +2,7 @@
 <div id="request_container">
   <% @requests.each do |request| %>
     <div class="each_request">
-      <%= request.name %>: <%= request.start_date %> - <%= request.end_date %>
+      <strong><%= request.name %>:</strong> <%= request.start_date %> - <%= request.end_date %>
       <% if request.start_date <= Date.today && Date.today <= request.end_date %>
         (In Progress)
       <% elsif request.start_date > Date.today %>
