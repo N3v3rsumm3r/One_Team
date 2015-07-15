@@ -8,13 +8,13 @@ class RequestsController < ApplicationController
   # GET /requests.json
   def index
     if params.include?(:id)
-      @requests = Request.where(user_id: params[:id])
+      @requests = Request.where(user_id: params[:id]).paginate(:page => params[:page], :per_page => 5)
     elsif params.include?(:active)
-      @requests = Request.open
+      @requests = Request.open.paginate(:page => params[:page], :per_page => 5)
     elsif params.include?(:applied)
-      @requests = Request.joins(:responses).open.where("responses.user_id = ?", current_user)
+      @requests = Request.joins(:responses).open.where("responses.user_id = ?", current_user).paginate(:page => params[:page], :per_page => 5)
     else
-      @requests = Request.all
+      @requests = Request.paginate(page: params[:page])
     end
     @responses = Response.all
   end

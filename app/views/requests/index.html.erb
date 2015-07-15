@@ -1,5 +1,6 @@
 <h1>Listing Requests</h1>
 <div id="request_container">
+  <%= will_paginate %>
   <% @requests.each do |request| %>
     <div class="each_request">
       <strong><%= request.name %>:</strong> <%= request.start_date %> - <%= request.end_date %>
@@ -36,6 +37,7 @@
       <% end %>
     </div><br>
   <% end %>
+  <% will_paginate %>
 </div>
 
 
