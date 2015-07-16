@@ -1,7 +1,7 @@
 module DateValidate
   extend ActiveSupport::Concern
   
-      def end_date_cannot_be_in_past
+  def end_date_cannot_be_in_past
     if end_date.present? && end_date < Date.today
       errors.add(:end_date, "cannot be in the past.")
     end
