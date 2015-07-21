@@ -71,7 +71,7 @@ class User < ActiveRecord::Base
   validates :group_id, presence: true, on: :update
   validates :manager_id, presence: true, allow_blank: true, on: :update
   validates :years_with_company, presence: true, on: :update
-  validates :years_cannot_be_negative
+  validate :years_cannot_be_negative
   
   def years_cannot_be_negative
     if years_with_company < 0

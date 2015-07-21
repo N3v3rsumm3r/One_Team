@@ -1,46 +1,23 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Projects</h1>
-
-<% if @projects.any? %>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Start date</th>
-        <th>End date</th>
-        <th>Project Lead</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @projects.each do |project| %>
-        <tr>
-          <td><%= project.name %></td>
-          <td><%= project.description %></td>
-          <td><%= project.start_date %></td>
-          <td><%= project.end_date %></td>
-          <td><%= project.user.full_name %></td>
-          <td><%= link_to 'Show', project %></td>
-          <td><%= link_to 'Edit', edit_project_path(project) %></td>
-          <td>
-            <% if current_user.admin? || owner_of?(project)%>
-              <%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %>
-            <% end %>
-          </td>
-        </tr>
+<div id="project_container">
+  <% @projects.each do |project| %>
+  <div class="each_request">
+    <div class="row">
+      <h4><%= project.name %></h4>  <%= project.start_date.to_s(:long) %> - <%= project.end_date.to_s(:long) %>
+    </div>
+    <div class="row">
+      Description: <%= project.description %>, created by: <%= project.user.full_name %>
+    </div>
+    <div class="row">
+      <%= link_to 'Show', project %>
+      <%= link_to 'Edit', edit_project_path(project) %>
+      <% if current_user.admin? || owner_of?(project) %>
+        <%= link_to 'Delete', project, method: :delete, data: {confirm: "Are you sure?" } %>
       <% end %>
-    </tbody>
-  </table>
+    </div>
+  </div><br>
+  <% end %>
+</div>
 
-<% else %>
-  <div class="center_text">
-    There are no active projects
-  </div>
-<% end %>
 
-<br>
-
-<%= link_to 'New Project', new_project_path %>
+<%= link_to 'New Project', new_project_path, class: " btn btn-default btn-md" %>

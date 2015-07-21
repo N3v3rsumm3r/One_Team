@@ -1,14 +1,14 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header>
   <div class="container">
     <%= link_to "One Team", root_path, id: "logo" %>
     <nav>
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav nav-tabs">
         <% if logged_in? %>
-          <li><%= link_to "Projects",    projects_path %></li>
-          <li><%= link_to "My Requests",    requests_path(:id => current_user) %></li>
-          <li><%= link_to "Applied Requests", requests_path(:applied => true) %></li>
-          <li><%= link_to "Open Requests",  requests_path(:active => true) %></li>
-          <li><%= link_to "Users",       users_path %></li>
+          <li role="presentation" class="active"><%= link_to "Projects",    projects_path %></li>
+          <li role="presentation"><%= link_to "My Requests",    requests_path(:id => current_user) %></li>
+          <li role="presentation"><%= link_to "Applied Requests", requests_path(:applied => true) %></li>
+          <li role="presentation"><%= link_to "Open Requests",  requests_path(:active => true) %></li>
+          <li role="presentation"><%= link_to "Users",       users_path %></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>
