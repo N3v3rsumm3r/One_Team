@@ -3,7 +3,7 @@
 <div class = "row">
   <aside class="col-sm-2">
     <div class="row center">
-      <% if current_user?(@user) %>
+      <% if current_user?(@user) || current_user.admin? %>
         <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-default btn-sm" %>
       <% end %>
     </div>
@@ -95,7 +95,11 @@
     <div class="row">
       <div class="col-md-8">
         <strong>Short Description about <%= @user.first_name %></strong>
-        <%= @user.description %>
+        <% if @user.description.nil? %>
+          Please Update Profile
+        <% else %>
+          <%= @user.description %>
+        <% end %> 
       </div>
     </div><br>
     <div class="row">
