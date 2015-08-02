@@ -45,16 +45,11 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1.json
   def update
     respond_to do |format|
-      puts "Prior to update action in the update method."
       if @project.update(project_params)
-        puts "Update method has successfully run."
-        format.html { redirect_to @project, notice: 'Project was successfully updated.'; puts "Redirect to project has succeeded." }
-        format.json { render :show, status: :ok, location: @project }
+        format.html { redirect_to @project, notice: 'Project was successfully updated.'}
       else
-        puts "Update method has failed, should render edit."
         @users = User.all
         format.html { render :edit ; puts "Render edit has succeeded" }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -65,7 +60,6 @@ class ProjectsController < ApplicationController
     @project.destroy
     respond_to do |format|
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
-      format.json { head :no_content }
     end
   end
 

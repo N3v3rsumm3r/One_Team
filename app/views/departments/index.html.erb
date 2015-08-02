@@ -1,31 +1,22 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Departments</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+<%= link_to 'New Department', new_department_path, class: "btn btn-default btn-sm" %><br><br>
     <% @departments.each do |department| %>
-      <tr>
-        <td><%= department.name %></td>
-        <td><%= link_to 'Show', department %></td>
-        <td><%= link_to 'Edit', edit_department_path(department) %></td>
-        <td>
+      <div class="row">
+        <div class="col-md-6">
+          <strong>Department:</strong> <%= department.name %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
           <% if current_user.admin? %>
-            <%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'Edit', edit_department_path(department), class: "btn btn-default btn-xs" %>
+            <%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn-xs" %>
           <% end %>
-        </td>
-      </tr>
+        </div>
+      </div></br>
     <% end %>
-  </tbody>
-</table>
+
 
 <br>
-
-<%= link_to 'New Department', new_department_path %>

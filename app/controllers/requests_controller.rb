@@ -1,14 +1,14 @@
 class RequestsController < ApplicationController
   skip_before_action :admin_user
-  before_action :set_assignment, only: [:show, :edit, :update, :destroy]
+  before_action :set_request, only: [:show, :edit, :update, :destroy]
   #before_action :owner_admin, only: [:edit, :update, :destroy]
   before_action :collection_resources, only: [:edit, :create, :new, :update]
 
   # GET /requests
   # GET /requests.json
   def index
-    if params.include?(:id)
-      @requests = Request.where(user_id: params[:id]).paginate(:page => params[:page], :per_page => 5)
+    if params.include?(:user)
+      @requests = Request.where(user_id: params[:user]).paginate(:page => params[:page], :per_page => 5)
     elsif params.include?(:active)
       @requests = Request.open.paginate(:page => params[:page], :per_page => 5)
     elsif params.include?(:applied)
@@ -33,6 +33,7 @@ class RequestsController < ApplicationController
   # GET /requests/1/edit
   def edit
     link_back
+    @request = Request.find(params[:id])
   end
 
   # POST /requests
@@ -42,7 +43,7 @@ class RequestsController < ApplicationController
   
     respond_to do |format|
       if @request.save
-        format.html { redirect_to session.delete(:return_to), notice: 'User was assigned to request.' }
+        format.html { redirect_to session.delete(:return_to), notice: 'Request was successfully created.' }
       else
         format.html { render :new }
       end
@@ -53,9 +54,9 @@ class RequestsController < ApplicationController
   # DELETE /requests/1.json
   def destroy
     link_back
-    Assignment.destroy(params[:assignment_id])
+    @request.destroy
     respond_to do |format|
-      format.html { redirect_to session.delete(:return_to), notice: 'User was unassigned from request.' }
+      format.html { redirect_to session.delete(:return_to), notice: 'Request was successfully deleted.' }
     end
   end
 

@@ -1,5 +1,5 @@
 <%= form_for(@request) do |f| %>
-<% if @request.errors.any? %>
+  <% if @request.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@request.errors.count, "error") %> prohibited this request from being saved:</h2>
   
@@ -11,91 +11,85 @@
     </div>
   <% end %>
 
-<div class="row">
-  <div class="form-group col-md-4"
-    <%= f.label :name, "Name*" %><br>
-    <%= f.text_field :name, class: "form-control" %>
-  </div>
-</div>
-
-<div class="row">
-  <div class="form-group col-md-6">
-    <%= f.label :description, "Description*" %><br>
-    <%= f.text_area :description, class: "form-control" %>
-  </div>
-</div>
-
-<div class="row">
-  <div class="form-group col-md-4">
-    <%= f.label :start_date, class: "control-label" %>
-    <div class="input-group date" id="datepicker1">
-      <%= f.text_field :start_date, class: "form-control",
-      :value=>"#{f.object.start_date.strftime("%m/%d/%Y") unless f.object.start_date.blank?}" %>
-      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+  <div class="row">
+    <div class="form-group col-md-4"
+      <%= f.label :name, "Name*" %><br>
+      <%= f.text_field :name, class: "form-control" %>
     </div>
   </div>
-  <div class="form-group col-md-4">
-    <%= f.label :end_date, class: "control-label" %>
-    <div class="input-group date" id="datepicker2">
-      <%= f.text_field :end_date, class: "form-control",
-      :value=>"#{f.object.end_date.strftime("%m/%d/%Y") unless f.object.end_date.blank?}" %>
-      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+  
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= f.label :description, "Description*" %><br>
+      <%= f.text_area :description, class: "form-control" %>
     </div>
   </div>
-</div>
-
-<div class="row">
-  <div class="form-group col-md-4">
-    <%= f.label :open, "Open*" %>
-    <%= f.check_box :open %>
-  </div>
-</div>
-<div class="row">
-  <div class="form-group col-md-4">
-    <%=f.label :project_id , "Associated Project*" %>
-    <%= f.collection_select :project_id, @projects, :id, :name,
-                            include_blank: '', class: 'form-control' %>
-  </div>
-</div>
-<div class="row">
-  <div class=" form-group col-md-4">
-    <%=f.label :location_id , "Location*" %>
-    <%= f.collection_select :location_id, @locations, :id, :name,
-                            include_blank: '', class: 'form-control' %>
-  </div>
-</div>  
-<div class="row">
-  <div class=" form-group col-md-4">
-      <%=f.label :department_id , "Department*" %>
-      <%= f.collection_select :department_id, @departments, :id, :name,
-                              include_blank: '', class: 'form-control' %>
-  </div>
-</div>
-<div class="row">
-  <div class=" form-group col-md-4">
-    <%=f.label :group_id , "Group*" %>
-    <%= f.collection_select :group_id, @groups, :id, :name,
-                            include_blank: '', class: 'form-control' %>
-  </div>
-</div>
-
-<div class="field"> 
-  <% f.hidden_field :user_id, :value => current_user %>
-
-</div>
-<label>Needed Skills</label>
-<div class = "checkbox_field">
-  <% @skills.each do |skill| %>
-    <div class = "skill_name">
-      <%= skill.name %>
+  
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= f.label :start_date, "Start Date*" %><br>
+      <%= f.date_select :start_date %>
     </div>
-    <%= check_box_tag "request[skill_ids][]", skill.id, @request.skill_ids.include?(skill.id) %>
-    <br>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= f.label :end_date, "End Date*" %><br>
+      <%= f.date_select :end_date %>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="form-group col-md-4">
+      <%= f.label :open, "Open*" %>
+      <%= f.check_box :open %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-4">
+      <%=f.label :project_id , "Associated Project*" %>
+      <%= f.collection_select :project_id, @projects, :id, :name,
+                              {include_blank: ''}, {class: 'form-control'} %>
+    </div>
+  </div>
+  <div class="row">
+    <div class=" form-group col-md-4">
+      <%=f.label :location_id , "Location*" %>
+      <%= f.collection_select :location_id, @locations, :id, :name,
+                              {include_blank: ''}, {class: 'form-control'} %>
+    </div>
+  </div>  
+  <div class="row">
+    <div class=" form-group col-md-4">
+        <%=f.label :department_id , "Department*" %>
+        <%= f.collection_select :department_id, @departments, :id, :name,
+                                {include_blank: ''}, {class: 'form-control'} %>
+    </div>
+  </div>
+  <div class="row">
+    <div class=" form-group col-md-4">
+      <%=f.label :group_id , "Group*" %>
+      <%= f.collection_select :group_id, @groups, :id, :name,
+                              {include_blank: ''}, {class: 'form-control'} %>
+    </div>
+  </div>
+  
+  <div class="field">
+          <%=f.hidden_field :user_id, {:value=> current_user.id} %>
+  </div>
+  <label>Needed Skills</label>
+  <div class = "checkbox_field">
+    <% @skills.each do |skill| %>
+      <div class = "skill_name">
+        <%= skill.name %>
+      </div>
+      <%= check_box_tag "request[skill_ids][]", skill.id, @request.skill_ids.include?(skill.id) %>
+      <br>
+    <% end %>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-2">
+      <%= f.submit class: "btn btn-primary btn-sm" %>
+    </div>
+  </div>
   <% end %>
-</div>
-<div class="row">
-  <div class="col-sm-2">
-    <%= f.submit class: "btn btn-primary btn-sm" %>
-  </div>
-</div>
-<% end %>
