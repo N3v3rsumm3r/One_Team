@@ -1,19 +1,21 @@
 <% provide(:title, @user.first_name + " " + @user.last_name) %>
-<br>
+<div class="row">
+  <div class=" col-md-8">
+    <h1><%= @user.first_name %> <%=@user.last_name %></h1>
+    <% if current_user?(@user) || current_user.admin? %>
+      <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-default btn-sm" %>
+    <% end %>
+  </div>
+</div>
 <div class = "row">
   <aside class="col-sm-2">
-    <div class="row center">
-      <% if current_user?(@user) || current_user.admin? %>
-        <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-default btn-sm" %>
-      <% end %>
-    </div>
     <div class="row center">
       <section class="gravatar center">
           <%= gravatar_for @user %>
       </section>
     </div>
   </aside>
-  <div class="col-md-8"><br><br>
+  <div class="col-md-8"><br>
     <div class="row">
       <div class="col-md-8">
         <strong>First Name:</strong>
@@ -130,5 +132,3 @@
       </div>
     </div>
 </div>
-
-<%= link_to 'Back', users_path %>

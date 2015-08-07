@@ -1,5 +1,5 @@
 <% if params.include?(:user) %>
-  <h1>My Requests</h1>
+  <h1>My Requests</h1> <%= link_to 'New Request', new_request_path, class: "btn btn-default btn-sm" %>
 <% elsif params.include?(:active) %>
   <h1>Open Requests</h1>
 <% elsif params.include?(:applied) %>
@@ -8,7 +8,6 @@
   <h1>All Requests</h1>
 <% end %>
 <div class="container">
-  <%= link_to 'New Request', new_request_path, class: "btn btn-default btn-sm" %>
   <div id="request_container">
     <%= will_paginate %>
     <% @requests.each do |request| %>
@@ -46,6 +45,7 @@
         <% elsif !request.open? %>
           No longer accepting responses to this request.
         <% elsif request.responders.include?(current_user) %>
+          My Comment: <%= current_response(request, current_user).comment %>
           <%= link_to 'Modify  Response', edit_request_response_path(request, current_response(request,current_user)), class: "btn btn-default btn-xs" %>
           <%= link_to 'Revoke Reponse', request_response_path(request, current_response(request,current_user)), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn-xs" %>
         <% else %>
