@@ -1,12 +1,16 @@
+<div class="row">
+  <div class="col-md-8 separator">
 <% if params.include?(:user) %>
-  <h1>My Requests</h1> <%= link_to 'New Request', new_request_path, class: "btn btn-default btn-sm" %>
+  <h1 class="head-title">My Requests</h1> <%= link_to 'New Request', new_request_path, class: "btn btn-default btn-xs" %>
 <% elsif params.include?(:active) %>
-  <h1>Open Requests</h1>
+  <h1 class="head-title">Open Requests</h1>
 <% elsif params.include?(:applied) %>
-  <h1>Applications</h1>
+  <h1 class="head-title">Applications</h1>
 <% else %>
-  <h1>All Requests</h1>
+  <h1 class="head-title">All Requests</h1>
 <% end %>
+  </div>
+</div>
 <div class="container">
   <div id="request_container">
     <%= will_paginate %>
@@ -27,37 +31,51 @@
         </div>
         <div class="row">
           Description: <%= request.description %><br>
-        </div>  
+        </div>
+        <div class="row">
+          <div class="col-md-4 separator">
+            <% if current_user.admin? %>
+              <%= link_to "Delete", request, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default btn-xs" %>
+            <% end %>
+            <% if current_user == request.user %>
+              <%= link_to "Edit", edit_request_path(request), class: "btn btn-default btn-xs" %>
+            <% end %>
+          </div>
+        </div><br>
         <% if owner_of?(request) %>
-         <br> Responses:
-          <% request.responses.each do |response| %>
-            <div class="each_response">
-              <%= link_to response.user.full_name, user_path(response.user) %>  Comment: <%= response.comment %>
-              <% if request.assignees.include?(response.user) %>
-                <%= link_to 'Unassign', destroy_assignment_path(current_assignment(request, response.user)), class: "btn btn-default btn-xs", :method => :delete %>
-              <% else %>
-                <%= link_to 'Assign', create_assignment_path(request_id: request, user_id: response.user), class: "btn btn-default btn-xs", :method => :post %>
-              <% end %>
-            </div>
+          <% if request.responses.any? %>
+            Responses:
+            <% request.responses.each do |response| %>
+              <div class="each_response">
+                <%= link_to response.user.full_name, user_path(response.user) %>  Comment: <%= response.comment %>
+                <% if request.assignees.include?(response.user) %>
+                  <%= link_to 'Unassign', destroy_assignment_path(current_assignment(request, response.user)), class: "btn btn-default btn-xs", :method => :delete %>
+                <% else %>
+                  <%= link_to 'Assign', create_assignment_path(request_id: request, user_id: response.user), class: "btn btn-default btn-xs", :method => :post %>
+                <% end %>
+              </div>
+            <% end %>
+          <% else %>
+            No Responses
           <% end %>
         <% elsif request.assignees.include?(current_user) %>
           You've been assigned to this request!
         <% elsif !request.open? %>
           No longer accepting responses to this request.
         <% elsif request.responders.include?(current_user) %>
-          My Comment: <%= current_response(request, current_user).comment %>
-          <%= link_to 'Modify  Response', edit_request_response_path(request, current_response(request,current_user)), class: "btn btn-default btn-xs" %>
-          <%= link_to 'Revoke Reponse', request_response_path(request, current_response(request,current_user)), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn-xs" %>
+          <div class="row">
+            <div class="col-md-6 each_response">
+              <strong>My Response:</strong> <%= current_response(request, current_user).comment %>
+              <div class="row">
+                <div class="col-md-6 separator">
+                  <%= link_to 'Modify  Response', edit_request_response_path(request, current_response(request,current_user)), class: "btn btn-default btn-xs" %>
+                  <%= link_to 'Revoke Reponse', request_response_path(request, current_response(request,current_user)), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn-xs" %>
+                </div>
+              </div>
+            </div>
+          </div>
         <% else %>
           <%= link_to 'Respond to Request.', new_request_response_path(request), class: "btn btn-default btn-xs" %></td>
-        <% end %>
-      </div><br>
-      <div class="row">
-        <% if current_user == request.user %>
-          <%= link_to "Edit", edit_request_path(request), class: "btn btn-default btn-xs" %>
-        <% end %>
-        <% if current_user.admin? %>
-          <%= link_to "Delete", request, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default btn-xs" %>
         <% end %>
       </div><br>
     <% end %>

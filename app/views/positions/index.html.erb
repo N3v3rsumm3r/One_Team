@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Positions</h1>
-<%= link_to 'New Position', new_position_path, class: "btn btn-default btn-sm" %><br><br>
+<h1 class="head-title">All Positions</h1>
+<%= link_to 'New Position', new_position_path, class: "btn btn-default btn-xs" %><br><br>
     <% @positions.each do |position| %>
       <div class="row">
         <div class="col-md-6">
@@ -18,5 +18,3 @@
       </div></br>
     <% end %>
 
-
-<br>
