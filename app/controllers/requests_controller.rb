@@ -49,6 +49,20 @@ class RequestsController < ApplicationController
       end
     end
   end
+  
+  # PATCH/PUT /requests/1
+  def update
+    
+    params[:request][:skill_ids] ||= []
+
+    respond_to do |format|
+      if @request.update(request_params)
+        format.html { redirect_to session.delete(:return_to), notice: 'Request was successfully updated.' }
+      else
+        format.html { render :edit }
+      end
+    end
+  end
 
   # DELETE /requests/1
   # DELETE /requests/1.json

@@ -69,16 +69,15 @@ p {
 #logo {
   float: left;
   margin-right: 10px;
-  font-size: 1.7em;
-  color: #fff;
-  text-transform: uppercase;
+  font-size: 3.7em;
+  color: #000;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
 }
 
 #logo:hover {
-  color: #fff;
+  color: #858383;
   text-decoration: none;
 }
 
@@ -249,5 +248,20 @@ input[type=checkbox]{
 }
 .head-title
 {
+  text-decoration:underline;
+}
+.logo
+{
+  float: left;
+  margin-right: 10px;
+  font-size: 3.7em;
+  color: #000;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+}
+.logo:hover
+{
+  color:#000;
   text-decoration:underline;
 }

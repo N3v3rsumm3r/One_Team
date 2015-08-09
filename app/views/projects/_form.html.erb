@@ -24,15 +24,21 @@
     </div>
   </div>
   <div class="row">
-    <div class="form-group col-md-4">
-      <%= f.label :start_date %>*<br>
-      <%= f.date_select :start_date, class: "form-control" %>
+    <div class="form-group col-md-4">          
+      <%= f.label :start_date, class: "control-label" %>
+      <div class="input-group date" id='datepicker1'>
+        <%= f.text_field :start_date, class: "form-control" %>
+        <span class='input-group-addon'><i class='glyphicon glyphicon-th'></i></span>
+      </div>
     </div>
   </div>
   <div class="row">
-    <div class="form-group col-md-4">
-      <%= f.label :end_date %>*<br>
-      <%= f.date_select :end_date, {class: "form-control"} %>
+    <div class="form-group col-md-4">          
+      <%= f.label :end_date, class: "control-label" %>
+      <div class="input-group date" id='datepicker2'>
+        <%= f.text_field :end_date, class: "form-control" %>
+        <span class='input-group-addon'><i class='glyphicon glyphicon-th'></i></span>
+      </div>
     </div>
   </div>
   <div class="row">
