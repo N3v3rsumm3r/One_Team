@@ -26,28 +26,19 @@
   </div>
   
   <div class="row">
-    <div class="form-group col-md-4">          
-      <%= f.label :start_date, class: "control-label" %>
+    <div class="form-group col-md-2">          
+      <%= f.label :start_date, "Start Date*", class: "control-label" %>
       <div class="input-group date" id='datepicker1'>
         <%= f.text_field :start_date, class: "form-control" %>
         <span class='input-group-addon'><i class='glyphicon glyphicon-th'></i></span>
       </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="form-group col-md-4">          
-      <%= f.label :end_date, class: "control-label" %>
+    <div class="form-group col-md-2">          
+      <%= f.label :end_date, "End Date*", class: "control-label" %>
       <div class="input-group date" id='datepicker2'>
         <%= f.text_field :end_date, class: "form-control" %>
         <span class='input-group-addon'><i class='glyphicon glyphicon-th'></i></span>
       </div>
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="form-group col-md-4">
-      <%= f.label :open, "Open*" %>
-      <%= f.check_box :open %>
     </div>
   </div>
   <div class="row">
@@ -56,8 +47,6 @@
       <%= f.collection_select :project_id, @projects, :id, :name,
                               {include_blank: ''}, {class: 'form-control'} %>
     </div>
-  </div>
-  <div class="row">
     <div class=" form-group col-md-4">
       <%=f.label :location_id , "Location*" %>
       <%= f.collection_select :location_id, @locations, :id, :name,
@@ -70,12 +59,16 @@
         <%= f.collection_select :department_id, @departments, :id, :name,
                                 {include_blank: ''}, {class: 'form-control'} %>
     </div>
-  </div>
-  <div class="row">
     <div class=" form-group col-md-4">
       <%=f.label :group_id , "Group*" %>
       <%= f.collection_select :group_id, @groups, :id, :name,
                               {include_blank: ''}, {class: 'form-control'} %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-4">
+      <%= f.label :open, "Open*" %>
+      <%= f.check_box :open %>
     </div>
   </div>
   
@@ -95,7 +88,7 @@
   
   <div class="row">
     <div class="col-sm-2">
-      <%= f.submit class: "btn btn-primary btn-sm" %>
+      <%= f.submit class: "btn btn-default btn-sm" %>
     </div>
   </div>
   <% end %>

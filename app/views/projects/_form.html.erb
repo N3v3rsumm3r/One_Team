@@ -13,19 +13,19 @@
 
   <div class="row">
     <div class="form-group col-md-4">
-      <%= f.label :name %>*<br>
+      <%= f.label :name, "Name*" %><br>
       <%= f.text_field :name, class: "form-control" %>
     </div>
   </div>
   <div class="row">
     <div class="form-group col-md-4">
-      <%= f.label :description %>*<br>
+      <%= f.label :description, "Description*" %><br>
       <%= f.text_area :description, class: "form-control" %>
     </div>
   </div>
   <div class="row">
     <div class="form-group col-md-4">          
-      <%= f.label :start_date, class: "control-label" %>
+      <%= f.label :start_date, "Start Date*", class: "control-label" %>
       <div class="input-group date" id='datepicker1'>
         <%= f.text_field :start_date, class: "form-control" %>
         <span class='input-group-addon'><i class='glyphicon glyphicon-th'></i></span>
@@ -34,7 +34,7 @@
   </div>
   <div class="row">
     <div class="form-group col-md-4">          
-      <%= f.label :end_date, class: "control-label" %>
+      <%= f.label :end_date, "End Date", class: "control-label" %>
       <div class="input-group date" id='datepicker2'>
         <%= f.text_field :end_date, class: "form-control" %>
         <span class='input-group-addon'><i class='glyphicon glyphicon-th'></i></span>
@@ -43,11 +43,13 @@
   </div>
   <div class="row">
     <div class="form-group col-md-4">
-      <%= f.label :user_id %>*<br>
+      <%= f.label :user_id, "Project Owner*" %><br>
       <%= f.collection_select :user_id, @users, :id, :full_name,{include_blank: ""}, {class: 'form-control'} %>
     </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="row">
+    <div class="col-md-2">
+      <%= f.submit class: "btn btn-default btn-sm" %>
+    </div>
   </div>
 <% end %>
