@@ -21,7 +21,7 @@
         <li role="presentation" class=<%= 'active' if current_page?(current_user) %>>
           <%= link_to "My Profile", current_user %>
         </li>
-        <li role="presentation" class=<%= 'active' if current_page?(projects_path) %>>
+        <li role="presentation" class=<%= 'active' if params[:controller] == 'projects' %>>
           <%= link_to "Projects", projects_path %>
         </li>
         <% if current_user.admin? %>

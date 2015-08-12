@@ -9,10 +9,12 @@ class RequestsController < ApplicationController
   def index
     if params.include?(:user)
       @requests = Request.where(user_id: params[:user]).paginate(:page => params[:page], :per_page => 5)
+                  .order(open: :desc, start_date: :asc)
     elsif params.include?(:active)
-      @requests = Request.open.paginate(:page => params[:page], :per_page => 5)
+      @requests = Request.open.paginate(:page => params[:page], :per_page => 5).order(open: :desc, start_date: :asc)
     elsif params.include?(:applied)
-      @requests = Request.joins(:responses).open.where("responses.user_id = ?", current_user).paginate(:page => params[:page], :per_page => 5)
+      @requests = Request.joins(:responses).open.where("responses.user_id = ?", current_user)
+                  .paginate(:page => params[:page], :per_page => 5).order(open: :desc, start_date: :asc)
     else
       @requests = Request.paginate(page: params[:page])
     end
