@@ -77,20 +77,12 @@
   </div>
   <div class="row">
     <div class="col-md-8">
-      Fields for row
-      <%= f.fields_for :needed_skills do |s| %>
+      <label>Needed Skills</label>
+      <%= f.fields_for :needed_skills do |builder| %>
         <div class="row">
           <div class="col-md-4">
-            text in div
-            <%= s.label :skill_id, "Name" %>
-            <%= s.collection_select :skill_id, @skill, :id, :name,
-                                        {include_blank: ''}, {class: 'form-control'} %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <%= s.label :_destroy, "Delete" %>
-            <%= s.check_box :_destroy %>
+            <%= builder.label :skill_id, "Name" %>
+            <%= builder.collection_select :skill_id, @skills, :id, :name, {include_blank: ''}, {class: 'form-control'} %>
           </div>
         </div>
       <% end %>

@@ -29,6 +29,7 @@ class RequestsController < ApplicationController
   def new
     @request = Request.new
     @request.open = true
+    @request.needed_skills.build
     link_back
   end
 
@@ -41,6 +42,7 @@ class RequestsController < ApplicationController
   # POST /requests
   def create
     @request = Request.new(request_params)
+    
     
   
     respond_to do |format|
@@ -102,6 +104,7 @@ class RequestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
-      params.require(:request).permit(:name, :description, :start_date, :end_date, :open, :project_id, :location_id, :department_id, :group_id, :user_id, :skill_ids => [])
+      params.require(:request).permit(:name, :description, :start_date, :end_date, :open, :project_id,
+                    :location_id, :department_id, :group_id, :user_id, needed_skills_attributes:[:id, :skill_id],:skill_ids => [])
     end
 end
