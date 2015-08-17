@@ -56,14 +56,19 @@ class RequestsController < ApplicationController
   
   # PATCH/PUT /requests/1
   def update
-    
-    params[:request][:skill_ids] ||= []
-
-    respond_to do |format|
-      if @request.update(request_params)
-        format.html { redirect_to session.delete(:return_to), notice: 'Request was successfully updated.' }
-      else
-        format.html { render :edit }
+    if params[:add_skill]
+      @request = Request.find(params[:id])
+      @request.attributes = request_params
+      @request.needed_skills.build
+      render 'edit'
+    else
+      @request = Request.find(params[:id])
+        respond_to do |format|
+        if @request.update(request_params)
+          format.html { redirect_to session.delete(:return_to), notice: 'Request was successfully updated.' }
+        else
+          format.html { render :edit }
+        end
       end
     end
   end
@@ -105,6 +110,7 @@ class RequestsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def request_params
       params.require(:request).permit(:name, :description, :start_date, :end_date, :open, :project_id,
-                    :location_id, :department_id, :group_id, :user_id, needed_skills_attributes:[:id, :skill_id],:skill_ids => [])
+                    :location_id, :department_id, :group_id, :user_id,
+                    needed_skills_attributes:[:id, :skill_id, :_destroy])
     end
 end

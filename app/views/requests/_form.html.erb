@@ -80,25 +80,23 @@
       <label>Needed Skills</label>
       <%= f.fields_for :needed_skills do |builder| %>
         <div class="row">
-          <div class="col-md-4">
+          <div class="form-group col-md-4">
             <%= builder.label :skill_id, "Name" %>
             <%= builder.collection_select :skill_id, @skills, :id, :name, {include_blank: ''}, {class: 'form-control'} %>
+          </div>
+          <div class="form-group col-md-4">
+            <%= builder.label :_destroy, 'Delete' %>
+            <%= builder.check_box :_destroy %>
           </div>
         </div>
       <% end %>
     </div>
   </div>
-  <label>Needed Skills</label>
-  <div class = "checkbox_field">
-    <% @skills.each do |skill| %>
-      <div class = "skill_name">
-        <%= skill.name %>
-      </div>
-      <%= check_box_tag "request[skill_ids][]", skill.id, @request.skill_ids.include?(skill.id) %>
-      <br>
-    <% end %>
+  <div class="row">
+    <div class="col-sm-2">
+      <%= f.submit 'Add Skill', :name => "add_skill", class: "btn btn-default btn-xs" %>
+    </div>
   </div>
-  
   <div class="row">
     <div class="col-sm-2">
       <%= f.submit class: "btn btn-default btn-sm" %>

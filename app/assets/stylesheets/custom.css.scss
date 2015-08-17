@@ -27,6 +27,7 @@ textarea{
 
 .center h1 {
   margin-bottom: 10px;
+  display: inline;
 }
 
 /* mixins, variables, etc. */
@@ -264,4 +265,9 @@ input[type=checkbox]{
 {
   color:#000;
   text-decoration:underline;
+}
+.new_task
+{
+  display: inline;
+  margin-left:20px;
 }

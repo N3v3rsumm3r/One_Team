@@ -15,7 +15,7 @@
         <li role="presentation" class=<%= 'active' if params.include?(:applied) %>>
           <%= link_to "Applications", requests_path(:applied => true) %>
         </li>
-        <li role="presentation" class=<%= 'active' if params.include?(:user) %>>
+        <li role="presentation" class=<%= 'active' if params.include?(:user) && params[:controller] == 'requests' %>>
           <%= link_to "My Requests",    requests_path(:user => current_user) %>
         </li>
         <li role="presentation" class=<%= 'active' if current_page?(current_user) %>>

@@ -70,11 +70,12 @@ class User < ActiveRecord::Base
   validates :position_id, presence: true, on: :update
   validates :group_id, presence: true, on: :update
   validates :manager_id, presence: true, allow_blank: true, on: :update
-  validates :years_with_company, presence: true, on: :update
-  validate :years_cannot_be_negative
+  validate :years_cannot_be_negative, on: :update
   
   def years_cannot_be_negative
-    if years_with_company < 0
+    if years_with_company.nil?
+      
+    elsif years_with_company < 0
       errors.add(:years_with_company, "cannot be negative.")
     end
   end

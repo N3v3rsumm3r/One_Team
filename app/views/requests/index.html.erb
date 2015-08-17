@@ -1,14 +1,15 @@
 <div class="row">
   <div class="col-md-8 separator">
-<% if params.include?(:user) %>
-  <h1 class="head-title">My Requests</h1> <%= link_to 'New Request', new_request_path, class: "btn btn-default btn-xs" %>
-<% elsif params.include?(:active) %>
-  <h1 class="head-title">Open Requests</h1>
-<% elsif params.include?(:applied) %>
-  <h1 class="head-title">Applications</h1>
-<% else %>
-  <h1 class="head-title">All Requests</h1>
-<% end %>
+      <% if params.include?(:user) %>
+        <h1 class="head-title">My Requests</h1>
+        <%= link_to 'New Request', new_request_path, class: "btn btn-default btn-xs new_task" %>
+      <% elsif params.include?(:active) %>
+        <h1 class="head-title">Open Requests</h1>
+      <% elsif params.include?(:applied) %>
+        <h1 class="head-title">Applications</h1>
+      <% else %>
+        <h1 class="head-title">All Requests</h1>
+      <% end %>
   </div>
 </div>
 <div class="container">
@@ -77,7 +78,7 @@
         <% else %>
           <%= link_to 'Respond to Request.', new_request_response_path(request), class: "btn btn-default btn-xs" %></td>
         <% end %>
-      </div><br>
+      </div><br><br>
     <% end %>
     <% will_paginate %>
   </div>
