@@ -33,6 +33,12 @@
         <div class="row">
           Description: <%= request.description %><br>
         </div>
+        <div class="row horizontal-list">
+          Required Skills: 
+          <% request.skills.each do |skill| %>
+            <li><%= skill.name %></li>
+          <% end %>
+        </div>
         <div class="row">
           <div class="col-md-4 separator">
             <% if current_user.admin? %>
