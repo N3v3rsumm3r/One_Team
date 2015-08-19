@@ -25,7 +25,7 @@
           <%= link_to "Projects", projects_path %>
         </li>
         <% if current_user.admin? %>
-          <li role="presentation" class="dropdown">
+          <li role="presentation" class=<%= 'active' if admin_active == true %>>
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin Menu <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><%= link_to "Users", users_path %></li>
