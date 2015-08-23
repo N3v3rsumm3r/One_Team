@@ -1,5 +1,5 @@
 <h1 class="head-title">All Skills</h1>
-<%= link_to 'New skill', new_skill_path, class: "btn btn-default btn-xs" %><br><br>
+<%= link_to 'New skill', new_skill_path, class: "btn btn-primary btn-xs new_task" %><br><br>
     <% @skills.each do |skill| %>
       <div class="row">
         <div class="col-md-6">
@@ -9,8 +9,8 @@
       <div class="row">
         <div class="col-md-6">
           <% if current_user.admin? %>
-            <%= link_to 'Edit', edit_skill_path(skill), class: "btn btn-default btn-xs" %>
-            <%= link_to 'Destroy', skill, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn-xs" %>
+            <%= link_to 'Edit', edit_skill_path(skill), class: "btn btn-primary btn-xs" %>
+            <%= link_to 'Destroy', skill, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs" %>
           <% end %>
         </div>
       </div></br>

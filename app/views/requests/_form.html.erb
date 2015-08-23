@@ -80,11 +80,11 @@
       <label>Needed Skills</label>
       <%= f.fields_for :needed_skills do |builder| %>
         <div class="row">
-          <div class="form-group col-md-4">
+          <div class="col-md-4">
             <%= builder.label :skill_id, "Name" %>
             <%= builder.collection_select :skill_id, @skills, :id, :name, {include_blank: ''}, {class: 'form-control'} %>
           </div>
-          <div class="form-group col-md-4">
+          <div class="col-md-1">
             <%= builder.label :_destroy, 'Delete' %>
             <%= builder.check_box :_destroy %>
           </div>
@@ -97,9 +97,13 @@
       <%= f.submit 'Add Skill', :name => "add_skill", class: "btn btn-primary btn-xs" %>
     </div>
   </div>
+  <div class="space"></div>
   <div class="row">
-    <div class="col-sm-2">
-      <%= f.submit class: "btn btn-success btn-sm" %>
-    </div>
-  </div>
+        <div class="actions col-md-4 col-md-offset-2">
+          <%= f.submit "Submit", class: "btn btn-primary btn-sm" %>
+        </div>
+        <div class="actions col-md-4">
+          <%= link_to "Cancel", session.delete(:return_to), class: "btn btn-primary btn-sm col-fill" %>
+        </div>
+      </div>
   <% end %>

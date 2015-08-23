@@ -67,37 +67,57 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-2">
-          Current Skills
-        </div>
-        <div class = "checkbox_field col-md-4">
-          <% @skills.each do |skill| %>
-            <div class = "skill_name">
-              <%= skill.name %> 
+        <div class="col-md-6">
+          <label>Skills</label>
+          <%= f.fields_for :current_skills do |c| %>
+            <div class="row">
+              <div class="col-md-4">
+                <%= c.label :skill_id, "Name" %>
+                <%= c.collection_select :skill_id, @skills, :id, :name, {include_blank: ''}, {class: 'form-control'} %>
+              </div>
+              <div class="col-md-1">
+                <%= c.label :_destroy, 'Delete' %>
+                <%= c.check_box :_destroy %>
+              </div>
             </div>
-            <%= check_box_tag  "user[skill_ids][]", skill.id, @user.skill_ids.include?(skill.id) %>
-            <br>
           <% end %>
-        </div>
-        <div class="col-md-2">
-          Desired Skills
-        </div>
-        <div class="checkbox_field col-md-4">
-          <% @skills.each do |skill| %>
-            <div class="skill_name">
-              <%= skill.name %>  
+          <div class="row">
+            <div class="col-md-4">
+              <%= f.submit 'Add SKill', :name => "add_skill", class: "btn btn-primary btn-xs" %>
             </div>
-            <%= check_box_tag "user[goal_ids][]", skill.id, @user.goal_ids.include?(skill.id) %>
-            <br>
-          <% end %>
+          </div>
         </div>
       </div>
+      <div class="space"></div>
+      <div class="row">
+        <div class="col-md-6">
+          <label>Goals</label>
+          <%= f.fields_for :desired_skills do |d| %>
+            <div class="row">
+              <div class="col-md-8">
+                <%= d.label :skill_id, "Name" %>
+                <%= d.collection_select :skill_id, @skills, :id, :name, {include_blank: ''}, {class: 'form-control'} %>
+              </div>
+              <div class="col-md-1 ">
+                <%= d.label :_destroy,'Delete' %>
+                <%= d.check_box :_destroy %>
+              </div>
+            </div>
+          <% end %>
+          <div class="row">
+            <div class="col-md-4">
+              <%= f.submit 'Add Goal', :name => "add_goal", class: "btn btn-primary btn-xs" %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="space"></div>
       <div class="row">
         <div class="actions col-md-4 col-md-offset-2">
-          <%= f.submit "Update Profile", class: "btn btn-default btn-sm" %>
+          <%= f.submit "Update Profile", class: "btn btn-primary btn-sm" %>
         </div>
         <div class="actions col-md-4">
-          <%= link_to "Cancel", session.delete(:return_to), class: "btn btn-default btn-sm col-fill" %>
+          <%= link_to "Cancel", session.delete(:return_to), class: "btn btn-primary btn-sm col-fill" %>
         </div>
       </div>
 </div>

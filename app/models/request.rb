@@ -6,7 +6,7 @@ class Request < ActiveRecord::Base
   belongs_to :group
   belongs_to :user
   has_many :needed_skills
-  accepts_nested_attributes_for :needed_skills
+  accepts_nested_attributes_for :needed_skills, :allow_destroy => true
   has_many :skills, through: :needed_skills
   has_many :responses
   has_many :responders, through: :responses, :source => :user

@@ -8,8 +8,10 @@ class User < ActiveRecord::Base
   belongs_to :position
   belongs_to :manager, :class_name => 'User', :foreign_key => 'manager_id'
   has_many :current_skills
+  accepts_nested_attributes_for :current_skills, :allow_destroy => true
   has_many :skills, through: :current_skills
   has_many :desired_skills
+  accepts_nested_attributes_for :desired_skills, :allow_destroy => true
   has_many :goals, through: :desired_skills, source: :skill
   has_many :projects
   has_many :requests

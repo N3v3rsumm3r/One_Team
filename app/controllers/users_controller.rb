@@ -19,6 +19,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    @user.current_skills.build
   end
 
   # GET /users/1/edit
@@ -46,16 +47,25 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    params[:user][:skill_ids] ||= []
-    params[:user][:goal_ids] ||= []
-    
-    respond_to do |format|
-      @user = User.find(params[:id])
-      if @user.update_attributes(user_params)
-        flash.now[:notice] = "User was successfully updated."
-        format.html { redirect_to @user }
-      else
-        format.html { render :edit }
+    if params[:add_skill]
+      @user = user.find(params[:id])
+      @user.attributes = request_params
+      @user.current_skills.build
+      render 'edit'
+    elsif params[:add_goal]
+      @user = user.find(params[:id])
+      @user.attributes = request_params
+      @user.desired_skills.build
+      render 'edit'
+    else
+      respond_to do |format|
+        @user = User.find(params[:id])
+        if @user.update_attributes(user_params)
+          flash.now[:notice] = "User was successfully updated."
+          format.html { redirect_to @user }
+        else
+          format.html { render :edit }
+        end
       end
     end
   end

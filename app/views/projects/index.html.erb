@@ -1,4 +1,5 @@
-<h1 class="head-title">Listing Projects</h1> <%= link_to 'New Project', new_project_path, class: " btn btn-default btn-xs" %>
+<h1 class="head-title">Listing Projects</h1> 
+<%= link_to 'New Project', new_project_path, class: " btn btn-primary btn-xs new_task" %>
 <div id="project_container">
   <% @projects.each do |project| %>
   <div class="each_request">
@@ -14,10 +15,9 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <%= link_to 'Show', project %>
-        <%= link_to 'Edit', edit_project_path(project) %>
+        <%= link_to 'Edit', edit_project_path(project), class: "btn btn-primary btn-xs" %>
         <% if current_user.admin? || owner_of?(project) %>
-          <%= link_to 'Delete', project, method: :delete, data: {confirm: "Are you sure?" } %>
+          <%= link_to 'Delete', project, method: :delete, data: {confirm: "Are you sure?" }, class: "btn btn-danger btn-xs"  %>
         <% end %>
       </div>
     </div>
