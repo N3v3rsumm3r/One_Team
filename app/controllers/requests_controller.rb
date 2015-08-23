@@ -41,6 +41,7 @@ class RequestsController < ApplicationController
 
   # POST /requests
   def create
+    link_back
     @request = Request.new(request_params)
     
     
@@ -56,6 +57,7 @@ class RequestsController < ApplicationController
   
   # PATCH/PUT /requests/1
   def update
+    link_back
     if params[:add_skill]
       @request = Request.find(params[:id])
       @request.attributes = request_params
