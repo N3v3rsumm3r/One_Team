@@ -21,10 +21,10 @@ module ApplicationHelper
     end
     
     def open_requests_view
-        params.include?(:active) && params[:controller] == 'requests' || params[:controller] == 'responses' &&
-        params[:action] == 'new'
+        params.include?(:active) && params[:controller] == 'requests' || params[:controller] == 'responses' && params[:action] == 'new'
     end
     
     def applied_view
+        params.include?(:applied) && params[:controller] == 'requests' || params[:controller] == 'responses' && params[:action] == 'edit'
     end
 end

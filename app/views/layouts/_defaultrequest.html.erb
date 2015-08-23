@@ -59,10 +59,7 @@
         <div class="col-md-6 each_response">
           <strong>My Response:</strong> <%= current_response(request, current_user).comment %>
           <div class="row">
-            <div class="col-md-6 separator">
-              <%= link_to 'Modify  Response', edit_request_response_path(request, current_response(request,current_user)), class: "btn btn-primary btn-xs" %>
-              <%= link_to 'Revoke Reponse', request_response_path(request, current_response(request,current_user)), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs" %>
-            </div>
+
           </div>
         </div>
       </div>

@@ -12,7 +12,7 @@
         <li role="presentation" class=<%= 'active' if open_requests_view == true %>>
           <%= link_to "Open Requests",  requests_path(:active => true) %>
         </li>
-        <li role="presentation" class=<%= 'active' if params.include?(:applied) %>>
+        <li role="presentation" class=<%= 'active' if applied_view == true %>>
           <%= link_to "Applications", requests_path(:applied => true) %>
         </li>
         <li role="presentation" class=<%= 'active' if my_request_view == true %>>
