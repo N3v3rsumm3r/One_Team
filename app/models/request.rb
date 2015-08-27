@@ -8,6 +8,7 @@ class Request < ActiveRecord::Base
   has_many :needed_skills
   accepts_nested_attributes_for :needed_skills, :allow_destroy => true
   has_many :skills, through: :needed_skills
+  has_many :proficiencies, through: :needed_skills
   has_many :responses
   has_many :responders, through: :responses, :source => :user
   has_many :assignments

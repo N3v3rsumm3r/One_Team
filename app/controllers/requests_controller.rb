@@ -98,6 +98,7 @@ class RequestsController < ApplicationController
       @groups = Group.all
       @users = User.all
       @skills = Skill.all
+      @proficiencies = Proficiency.all
     end
   
     def owner_admin
@@ -113,6 +114,6 @@ class RequestsController < ApplicationController
     def request_params
       params.require(:request).permit(:name, :description, :start_date, :end_date, :open, :project_id,
                     :location_id, :department_id, :group_id, :user_id,
-                    needed_skills_attributes:[:id, :skill_id, :_destroy])
+                    needed_skills_attributes:[:id, :skill_id, :proficiency_id, :_destroy])
     end
 end

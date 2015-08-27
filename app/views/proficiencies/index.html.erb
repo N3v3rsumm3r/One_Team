@@ -1,0 +1,17 @@
+<h1 class="head-title">All Proficiencies</h1>
+<%= link_to 'New Proficiency', new_proficiency_path, class: "btn btn-primary btn-xs new_task" %><br><br>
+    <% @proficiencies.each do |proficiency| %>
+      <div class="row">
+        <div class="col-md-6">
+          <strong>Proficiency:</strong> <%= proficiency.name %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <% if current_user.admin? %>
+            <%= link_to 'Edit', edit_proficiency_path(proficiency), class: "btn btn-primary btn-xs" %>
+            <%= link_to 'Destroy', proficiency, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs" %>
+          <% end %>
+        </div>
+      </div></br>
+    <% end %>

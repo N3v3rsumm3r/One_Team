@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :proficiencies
+
   get 'sessions/new'
 
   root                   'requests#index'

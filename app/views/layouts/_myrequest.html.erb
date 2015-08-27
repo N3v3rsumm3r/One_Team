@@ -12,10 +12,11 @@
         (Request Ended)
       <% end %>
     </div>
-    <div class="row horizontal-list">
+    <div class="row">
       Required Skills: 
-      <% request.skills.each do |skill| %>
-        <li><%= skill.name %></li>
+      <% request.needed_skills.each do |skill| %>
+        <li><%= skill.skill.name %> <%= skill.proficiency.name %></li>
+        
       <% end %>
     </div>
     <div class="row">

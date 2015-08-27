@@ -1,7 +1,7 @@
+<h1 class="head-title">All Groups</h1>
+<%= link_to 'New Group', new_group_path, class: "btn btn-primary btn-xs new_task" %><br><br>
 <div class="row">
   <div class="col-md-8">
-    <h1 class="head-title">All Groups</h1>
-    <%= link_to 'New Group', new_group_path, class: "btn btn-primary btn-xs new_task" %><br><br>
         <% @groups.each do |group| %>
           <div class="row">
             <div class="col-md-6">
