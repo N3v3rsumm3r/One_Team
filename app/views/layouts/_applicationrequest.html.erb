@@ -15,11 +15,20 @@
     <div class="row">
       Description: <%= request.description %><br>
     </div>
-    <div class="row horizontal-list">
-      Required Skills: 
-      <% request.skills.each do |skill| %>
-        <li><%= skill.name %></li>
-      <% end %>
+    <div class="row">
+      <ul>
+        Required Skills: 
+        <% request.skills.each do |skill| %>
+          <li>
+            <%= skill.name %>: 
+            <% if skill.proficiency.nil? %>
+              No Level
+            <% else %>
+              <%= skill.proficiency.name %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
     </div>
     </div><br>
     <% if request.assignees.include?(current_user) %>

@@ -18,16 +18,22 @@
     <div class="row">
       Description: <%= request.description %><br>
     </div>
-    <div class="row horizontal-list">
-      Required Skills: 
+    <div class="row">
+      Required Skills:
+      <ul>
+      <div class="col-md-6">
       <% request.needed_skills.each do |skill| %>
-        <li><%= skill.skill.name %>: 
-        <% if skill.proficiency.nil? %>
-        No Level
-        <% else %>
-          <%= skill.proficiency.name %>
-        <% end %></li>
+        <li>
+          <%= skill.skill.name %>: 
+          <% if skill.proficiency.nil? %>
+            No Level
+          <% else %>
+            <%= skill.proficiency.name %>
+          <% end %>
+        </li>
       <% end %>
+      </div>
+      </ul>
     </div>
     <div class="row">
       <div class="col-md-4 separator">

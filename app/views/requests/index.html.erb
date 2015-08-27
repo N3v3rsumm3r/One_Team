@@ -17,7 +17,7 @@
     <%= render 'layouts/defaultrequest' %>
   <% elsif params.include?(:applied) %>
     <%= render 'layouts/applicationrequest' %>
-  <% elsif params.include?(:user) %>
+  <% else params.include?(:user) %>
     <%= render 'layouts/myrequest' %>
   <% end %>
 </div>

@@ -13,11 +13,21 @@
       <% end %>
     </div>
     <div class="row">
+      <div class = "col-md-6">
+      <ul>
       Required Skills: 
       <% request.needed_skills.each do |skill| %>
-        <li><%= skill.skill.name %> <%= skill.proficiency.name %></li>
-        
+        <li>
+          <%= skill.skill.name %>: 
+          <% if skill.proficiency.nil? %>
+            No Level
+          <% else %>
+            <%= skill.proficiency.name %>
+          <% end %>
+        </li>
       <% end %>
+      </ul>
+      </div>
     </div>
     <div class="row">
       <div class="col-md-4 separator">
