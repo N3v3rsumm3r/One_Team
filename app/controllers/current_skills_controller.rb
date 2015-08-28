@@ -28,11 +28,9 @@ class CurrentSkillsController < ApplicationController
 
     respond_to do |format|
       if @current_skill.save
-        format.html { redirect_to @current_skill, notice: 'Current skill was successfully created.' }
-        format.json { render :show, status: :created, location: @current_skill }
+        format.html { redirect_to session.delete(:return_to), notice: 'Current skill was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @current_skill.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,11 +40,9 @@ class CurrentSkillsController < ApplicationController
   def update
     respond_to do |format|
       if @current_skill.update(current_skill_params)
-        format.html { redirect_to @current_skill, notice: 'Current skill was successfully updated.' }
-        format.json { render :show, status: :ok, location: @current_skill }
+        format.html { redirect_to session.delete(:return_to), notice: 'Current skill was successfully updated.' }
       else
         format.html { render :edit }
-        format.json { render json: @current_skill.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -56,7 +52,7 @@ class CurrentSkillsController < ApplicationController
   def destroy
     @current_skill.destroy
     respond_to do |format|
-      format.html { redirect_to current_skills_url, notice: 'Current skill was successfully destroyed.' }
+      format.html { redirect_to session.delete(:return_to), notice: 'Current skill was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

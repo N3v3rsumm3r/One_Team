@@ -15,12 +15,14 @@ class ProjectsController < ApplicationController
 
   # GET /projects/new
   def new
+    link_back
     @project = Project.new
     @users = User.all
   end
 
   # GET /projects/1/edit
   def edit
+    link_back
     @users = User.all
   end
 
@@ -32,11 +34,9 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
-        format.json { render :show, status: :created, location: @project }
+        format.html { redirect_to session.delete(:return_to), notice: 'Project was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -46,7 +46,7 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
-        format.html { redirect_to @project, notice: 'Project was successfully updated.'}
+        format.html { redirect_to session.delete(:return_to), notice: 'Project was successfully updated.'}
       else
         @users = User.all
         format.html { render :edit ; puts "Render edit has succeeded" }
@@ -57,9 +57,10 @@ class ProjectsController < ApplicationController
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy
+    link_back
     @project.destroy
     respond_to do |format|
-      format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
+      format.html { redirect_to session.delete(:return_to), notice: 'Project was successfully destroyed.' }
     end
   end
 

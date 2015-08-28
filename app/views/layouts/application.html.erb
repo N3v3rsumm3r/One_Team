@@ -15,9 +15,13 @@
       <% end %>
       <%= yield %>
       <%= debug(params) if Rails.env.development? %>
-      <div class="return">
-        <%= session[:return_to] if Rails.env.development? %>
-      </div>
+
+      
     </div>
+    <% if Rails.env.development? %>
+      Link Back URL: <%= session[:return_to] %><br>
+      Request referer <%= request.referer %><br>
+      
+    <% end %>
   </body>
 </html>
