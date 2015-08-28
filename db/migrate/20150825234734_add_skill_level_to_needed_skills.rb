@@ -1,5 +1,5 @@
 class AddSkillLevelToNeededSkills < ActiveRecord::Migration
   def change
-    add_column :needed_skills, :skill_level, :integer
+    add_column :needed_skills, :proficiency_id, :integer
   end
 end
