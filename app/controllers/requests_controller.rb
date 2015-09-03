@@ -28,7 +28,6 @@ class RequestsController < ApplicationController
   # GET /requests/new
   def new
     link_back
-    better_redirect
     @request = Request.new
     @request.open = true
     @request.needed_skills.build
@@ -37,7 +36,6 @@ class RequestsController < ApplicationController
   # GET /requests/1/edit
   def edit
     link_back
-    better_redirect
     @request = Request.find(params[:id])
   end
 
@@ -47,7 +45,7 @@ class RequestsController < ApplicationController
     
     respond_to do |format|
       if @request.save
-        format.html { redirect_to session.delete(:return_to), notice: 'Request was successfully created.' }
+        format.html { redirect_to requests_path(:user => current_user), notice: 'Request was successfully created.' }
       else
         format.html { render :new }
       end
@@ -65,7 +63,7 @@ class RequestsController < ApplicationController
       @request = Request.find(params[:id])
         respond_to do |format|
         if @request.update(request_params)
-          format.html { redirect_to session.delete(:return_to), notice: 'Request was successfully updated.' }
+          format.html { redirect_to requests_path(:user => current_user), notice: 'Request was successfully updated.' }
         else
           format.html { render :edit }
         end
@@ -77,10 +75,9 @@ class RequestsController < ApplicationController
   # DELETE /requests/1.json
   def destroy
     link_back
-    better_redirect
     @request.destroy
     respond_to do |format|
-      format.html { redirect_to session.delete(:return_to), notice: 'Request was successfully deleted.' }
+      format.html { redirect_to requests_path(:user => current_user), notice: 'Request was successfully deleted.' }
     end
   end
 
