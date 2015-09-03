@@ -80,12 +80,12 @@
       <label>Needed Skills</label>
       <%= f.fields_for :needed_skills do |builder| %>
         <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-6">
             <%= builder.label :skill_id, "Name" %>
             <%= builder.collection_select :skill_id, @skills, :id, :name, {include_blank: ''}, {class: 'form-control'} %>
           </div>
-          <div class="col-md-4">
-            <%= builder.label :skill_level, "Level" %>
+          <div class="col-md-6">
+            <%= builder.label :proficiency_id, "Level" %>
             <%= builder.collection_select :proficiency_id, @proficiencies, :id, :name, {include_blank: ''}, {class: 'form-control'} %>
           </div>
           <div class="col-md-1">

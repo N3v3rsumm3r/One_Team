@@ -73,6 +73,10 @@
             <%= c.label :skill_id, "Name" %>
             <%= c.collection_select :skill_id, @skills, :id, :name, {include_blank: ''}, {class: 'form-control'} %>
           </div>
+          <div class="col-md-6">
+            <%= c.label :proficiency_id, "Level" %>
+            <%= c.collection_select :proficiency_id, @proficiencies, :id, :name, {include_blank: ''}, {class: 'form-control'} %>
+          </div>
           <div class="col-md-1">
             <%= c.label :_destroy, 'Delete' %>
             <%= c.check_box :_destroy %>
@@ -81,7 +85,7 @@
       <% end %>
       <div class="row">
         <div class="col-md-4">
-          <%= f.submit 'Add SKill', :name => "add_skill", class: "btn btn-primary btn-xs" %>
+          <%= f.submit 'Add Skill', :name => "add_skill", class: "btn btn-primary btn-xs" %>
         </div>
       </div>
     </div>

@@ -31,11 +31,11 @@
     </div>
     <div class="row">
       <div class="col-md-4 separator">
+        <% if current_user == request.user || current_user.admin? %>
+          <%= link_to "Edit", edit_request_path(request), class: "btn btn-primary btn-xs" %>
+        <% end %>
         <% if current_user.admin? %>
           <%= link_to "Delete", request, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger btn-xs" %>
-        <% end %>
-        <% if current_user == request.user %>
-          <%= link_to "Edit", edit_request_path(request), class: "btn btn-primary btn-xs" %>
         <% end %>
       </div>
     </div><br>

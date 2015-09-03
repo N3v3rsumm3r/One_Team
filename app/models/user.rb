@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   has_many :current_skills
   accepts_nested_attributes_for :current_skills, :allow_destroy => true
   has_many :skills, through: :current_skills
+  has_many :proficiencies, through: :current_skills
   has_many :desired_skills
   accepts_nested_attributes_for :desired_skills, :allow_destroy => true
   has_many :goals, through: :desired_skills, source: :skill

@@ -48,13 +48,13 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     if params[:add_skill]
-      @user = user.find(params[:id])
-      @user.attributes = request_params
+      @user = User.find(params[:id])
+      @user.attributes = user_params
       @user.current_skills.build
       render 'edit'
     elsif params[:add_goal]
-      @user = user.find(params[:id])
-      @user.attributes = request_params
+      @user = User.find(params[:id])
+      @user.attributes = user_params
       @user.desired_skills.build
       render 'edit'
     else
@@ -91,6 +91,7 @@ class UsersController < ApplicationController
       @groups = Group.all
       @departments = Department.all
       @skills = Skill.all
+      @proficiencies = Proficiency.all
     end
   
     def correct_user
@@ -105,7 +106,7 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:first_name, :last_name, :email, :department_id, :location_id,
       :position_id, :group_id, :manager_id, :years_with_company, :description, :password, :password_confirmation,
-      current_skills_attributes:[:id, :skill_id, :_destroy],
+      current_skills_attributes:[:id, :skill_id, :proficiency_id, :_destroy],
       desired_skills_attributes:[:id, :skill_id, :_destroy])
     end
     
