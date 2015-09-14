@@ -79,10 +79,20 @@
       </div>
     </div><br>
     <div class="row">
-      <div class="col-md-8 horizontal-list">
+      <div class="col-md-8">
         <strong>Current Skills:</strong>
-        <% @user.skills.each do |skill| %>
-          <li><%= skill.name %></li>
+        <% @user.current_skills.each do |skill| %>
+          <li>
+            <%= skill.skill.name %>
+            <% if skill.proficiency.nil? %>
+              No Level
+            <% else %>
+              <% skill.proficiency.level.times do |i| %>
+                <%= tag("span", class: ["glyphicon", "glyphicon-star"]) %>
+                <%= tag("/span") %>
+              <% end %>
+            <% end %>
+          </li>
         <% end %>
       </div>
     </div>

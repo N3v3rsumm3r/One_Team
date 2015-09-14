@@ -16,15 +16,18 @@
       Description: <%= request.description %><br>
     </div>
     <div class="row">
+       Required Skills:
       <ul>
-        Required Skills: 
-        <% request.skills.each do |skill| %>
+        <% request.needed_skills.each do |skill| %>
           <li>
-            <%= skill.name %>: 
+            <%= skill.skill.name %>: 
             <% if skill.proficiency.nil? %>
               No Level
             <% else %>
-              <%= skill.proficiency.name %>
+              <% skill.proficiency.level.to_i.times do |n| %>
+                <%= tag("span", class: ["glyphicon", "glyphicon-star"]) %>
+                <%= tag("/span") %>
+              <% end %>
             <% end %>
           </li>
         <% end %>

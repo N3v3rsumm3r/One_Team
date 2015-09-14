@@ -13,21 +13,22 @@
       <% end %>
     </div>
     <div class="row">
-      <div class = "col-md-6">
+      Required Skills:
       <ul>
-      Required Skills: 
-      <% request.needed_skills.each do |skill| %>
-        <li>
-          <%= skill.skill.name %>: 
-          <% if skill.proficiency.nil? %>
-            No Level
-          <% else %>
-            <%= skill.proficiency.name %>
-          <% end %>
-        </li>
-      <% end %>
+        <% request.needed_skills.each do |skill| %>
+          <li>
+            <%= skill.skill.name %> 
+            <% if skill.proficiency.nil? %>
+              No Level
+            <% else %>
+              <% skill.proficiency.level.to_i.times do |n| %>
+                <%= tag("span", class: ["glyphicon", "glyphicon-star"]) %>
+                <%= tag("/span") %>
+              <% end %>
+            <% end %>
+          </li>
+        <% end %>
       </ul>
-      </div>
     </div>
     <div class="row">
       <div class="col-md-4 separator">

@@ -8,6 +8,11 @@
       </div>
       <div class="row">
         <div class="col-md-6">
+          <strong>Level:</strong> <%= proficiency.level %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
           <% if current_user.admin? %>
             <%= link_to 'Edit', edit_proficiency_path(proficiency), class: "btn btn-primary btn-xs" %>
             <%= link_to 'Destroy', proficiency, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs" %>

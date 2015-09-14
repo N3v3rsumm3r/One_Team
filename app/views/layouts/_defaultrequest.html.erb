@@ -26,9 +26,12 @@
         <li>
           <%= skill.skill.name %>: 
           <% if skill.proficiency.nil? %>
-            No Level
+              No Level
           <% else %>
-            <%= skill.proficiency.name %>
+            <% skill.proficiency.level.to_i.times do |n| %>
+              <%= tag("span", class: ["glyphicon", "glyphicon-star"]) %>
+              <%= tag("/span") %>
+            <% end %>
           <% end %>
         </li>
       <% end %>
