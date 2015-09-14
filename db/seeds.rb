@@ -52,10 +52,11 @@ Skill.create!([
   ])
   
 Proficiency.create!([
-  {name: "Beginner"},
-  {name: "Intermediate"},
-  {name: "Advanced"},
-  {name: "Expert"}
+  {name: "None", level: 1},
+  {name: "Beginner", level: 2},
+  {name: "Intermediate", level: 3},
+  {name: "Advanced", level: 4},
+  {name: "Expert", level: 5}
   ])
 
 User.create!([
