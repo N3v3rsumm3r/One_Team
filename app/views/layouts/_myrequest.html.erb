@@ -46,6 +46,38 @@
         <% request.responses.each do |response| %>
           <div class="each_response">
             <%= link_to response.user.full_name, user_path(response.user) %>  Comment: <%= response.comment %>
+            <div class="row">
+              <div class="col-md-6">
+                <ul>
+                  <% request.needed_skills.each do |skill| %>
+                    <% if response.user.current_skills.where(skill_id: skill.skill_id).exists? %>
+                      <% response_level = response.user.current_skills.where(skill_id: skill.skill_id).first.proficiency.level %>
+                      <li>
+                        <%= skill.skill.name %>: 
+                        <% 1.upto(skill.proficiency.level) do |n| %>
+                          <% if n <= response_level %>
+                            <%= tag("span", class: ["glyphicon", "glyphicon-star"]) %>
+                            <%= tag("/span") %>
+                          <% else %>
+                            <%= tag("span", class: ["glyphicon", "glyphicon-star-empty"]) %>
+                            <%= tag("/span") %>
+                          <% end %>
+                        <% end %>
+                    </li>
+                    <% else %>
+                      <li>
+                        <%= skill.skill.name %>
+                        <% skill.proficiency.level.to_i.times do |n| %>
+                          <%= tag("span", class: ["glyphicon", "glyphicon-star-empty"]) %>
+                          <%= tag("/span") %>
+                        <% end %>
+                      </li>
+                    <% end %>
+                  <% end %>
+                  
+                </ul>
+              </div>
+            </div>
             <% if request.assignees.include?(response.user) %>
               <%= link_to 'Unassign', destroy_assignment_path(current_assignment(request, response.user)), class: "btn btn-danger btn-xs", :method => :delete %>
             <% else %>
